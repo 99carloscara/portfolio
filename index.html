@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carlos Cara</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: auto;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      cursor: none; /* Elimina el cursor predeterminado */
+    }
+
+    /* Efecto del cursor personalizado */
+    .cursor {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, rgba(0, 102, 255, 1) 30%, rgba(255, 255, 255, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: transform 0.1s ease, background 0.2s ease;
+      z-index: 10000;
+    }
+
+    /* Animación de la transición */
+    .cursor-hover {
+      transform: scale(1.5); /* Aumenta el tamaño al pasar sobre los enlaces */
+      background: radial-gradient(circle, rgba(0, 102, 255, 1) 50%, rgba(255, 255, 255, 0) 80%);
+    }
+
+    .contenedor-imagen {
+      position: relative;
+      width: 100%;
+    }
+
+    .imagen-fondo {
+      width: 100%;
+      display: block;
+    }
+
+    .area-click {
+      position: absolute;
+      cursor: pointer;
+      z-index: 10;
+      background: transparent;
+      transition: all 0.4s ease-in-out;
+    }
+
+    /* Efectos al pasar el ratón sobre el área clicable */
+    .area-click:hover {
+      background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3)); /* Fondo con gradiente */
+      transform: scale(1.15) rotate(5deg) translateY(-5px); /* Efecto de escala, rotación y movimiento hacia arriba */
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* Sombra fuerte */
+    }
+
+    /* Animación de pulsación */
+    .area-click {
+      animation: pulsar 2s infinite ease-in-out;
+    }
+
+    @keyframes pulsar {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    /* Estilos para cada área clicable */
+    .fotografia {
+      top: 15%;
+      left: 10%;
+      width: 20%;
+      height: 8%;
+    }
+
+    .nombre {
+      top: 40%;
+      left: 30%;
+      width: 40%;
+      height: 15%;
+    }
+
+    .cine {
+      top: 15%;
+      right: 10%;
+      width: 15%;
+      height: 8%;
+    }
+
+    .diseno {
+      bottom: 15%;
+      right: 10%;
+      width: 25%;
+      height: 8%;
+    }
+
+    /* Líneas azules eléctricas */
+    .linea-superior, .linea-inferior {
+      position: fixed;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #0066ff, #66aaff, #0066ff);
+      box-shadow: 0 0 10px rgba(0, 102, 255, 0.8);
+      z-index: 5;
+    }
+
+    .linea-superior {
+      top: 0;
+    }
+
+    .linea-inferior {
+      bottom: 0;
+    }
+
+    /* Efecto de movimiento en las líneas */
+    @keyframes moverLineas {
+      0% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(10px);
+      }
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    .linea-superior, .linea-inferior {
+      animation: moverLineas 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body>
+  <div class="contenedor-imagen">
+    <img src="web-carlos.png" alt="Carlos Cara" class="imagen-fondo">
+
+    <!-- ÁREAS CLICKABLES INVISIBLES -->
+    <div class="area-click fotografia" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html', '_self')"></div>
+    <div class="area-click nombre" onclick="window.open('perfil.html', '_blank')"></div>
+    <div class="area-click cine" onclick="window.open('cine.html', '_self')"></div>
+    <div class="area-click diseno" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html', '_blank')"></div>
+  </div>
+
+  <!-- Líneas decorativas -->
+  <div class="linea-superior"></div>
+  <div class="linea-inferior"></div>
+
+  <!-- Cursor -->
+  <div class="cursor" id="cursor"></div>
+
+  <script>
+    // Efecto de "seguimiento" del ratón
+    const cursor = document.getElementById('cursor');
+    
+    // Movimiento del cursor
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.pageX - cursor.offsetWidth / 2 + 'px';
+      cursor.style.top = e.pageY - cursor.offsetHeight / 2 + 'px';
+    });
+
+    // Efecto cuando el ratón está sobre un área clicable
+    const areas = document.querySelectorAll('.area-click');
+    areas.forEach(area => {
+      area.addEventListener('mouseenter', () => {
+        cursor.classList.add('cursor-hover'); // Se aumenta el tamaño del cursor
+      });
+      area.addEventListener('mouseleave', () => {
+        cursor.classList.remove('cursor-hover'); // Se vuelve al tamaño original
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
