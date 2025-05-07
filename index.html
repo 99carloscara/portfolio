@@ -1,4 +1,4 @@
-<!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -111,6 +111,7 @@
         top: 0;
         left: 0;
         position: absolute;
+        cursor: pointer;
       }
 
       /* Eliminamos el cursor personalizado en la versión móvil */
@@ -134,16 +135,16 @@
     <img src="web-carlos.png" alt="Carlos Cara" class="imagen-fondo">
 
     <!-- Enlaces con las áreas clicables, solo visibles en la versión móvil -->
-    <div class="area-click fotografia" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html', '_blank')">
+    <div class="area-click fotografia" onclick="location.href='https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html'">
       <img src="foto-ilustracion.png" alt="Ilustración Fotografía" class="ilustracion">
     </div>
-    <div class="area-click nombre" onclick="window.location.href='carloscara.html'">
+    <div class="area-click nombre" onclick="location.href='carloscara.html'">
       <img src="logocarlos.png" alt="Logo Carlos Cara" class="ilustracion">
     </div>
-    <div class="area-click cine" onclick="window.open('cine.html', '_blank')">
+    <div class="area-click cine" onclick="location.href='cine.html'">
       <img src="cine-ilustracion.png" alt="Ilustración Cine" class="ilustracion">
     </div>
-    <div class="area-click diseno" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html', '_blank')">
+    <div class="area-click diseno" onclick="location.href='https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html'">
       <img src="diseno-ilustracion.png" alt="Ilustración Diseño Gráfico" class="ilustracion">
     </div>
 
@@ -152,10 +153,11 @@
     <div class="linea-inferior"></div>
   </div>
 
-  <!-- Cursor personalizado -->
+  <!-- Cursor personalizado (no se verá en móvil) -->
   <div class="cursor" id="cursor"></div>
 
   <script>
+    // Script para el cursor personalizado
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', (e) => {
       cursor.style.left = e.pageX - cursor.offsetWidth / 2 + 'px';
