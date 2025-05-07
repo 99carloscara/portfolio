@@ -13,17 +13,10 @@
       font-family: Arial, sans-serif;
       background-color: #000;
       cursor: none;
+      touch-action: manipulation;
     }
 
-    /* OCULTAR MOVIL POR DEFECTO */
-    .movil {
-      display: none;
-    }
-
-    /* VERSIÓN WEB */
-    .web {
-      display: block;
-    }
+    .web { display: block; }
 
     .contenedor-imagen {
       width: 100%;
@@ -73,12 +66,10 @@
       100% { transform: scale(1); }
     }
 
-    .fotografia {
-      top: 10%;
-      left: 10%;
-      width: 30%;
-      height: 25%;
-    }
+    .fotografia { top: 10%; left: 10%; width: 30%; height: 25%; }
+    .nombre     { top: 40%; left: 35%; width: 30%; height: 25%; z-index: 50; }
+    .cine       { top: 10%; right: 10%; width: 35%; height: 35%; }
+    .diseno     { bottom: 10%; right: 5%; width: 30%; height: 25%; }
 
     .ilustracion-foto, .ilustracion-logo, .ilustracion-cine, .ilustracion-diseno {
       position: absolute;
@@ -98,28 +89,6 @@
     .area-click:hover .ilustracion-diseno {
       opacity: 1;
       transform: translate(-50%, -50%) scale(1.2);
-    }
-
-    .nombre {
-      top: 40%;
-      left: 35%;
-      width: 30%;
-      height: 25%;
-      z-index: 50;
-    }
-
-    .cine {
-      top: 10%;
-      right: 10%;
-      width: 35%;
-      height: 35%;
-    }
-
-    .diseno {
-      bottom: 10%;
-      right: 5%;
-      width: 30%;
-      height: 25%;
     }
 
     .linea-superior, .linea-inferior {
@@ -142,9 +111,10 @@
       100% { transform: translateX(0); }
     }
 
-    /* VERSIÓN MÓVIL */
+    /* MÓVIL */
     @media (max-width: 768px) {
       .web { display: none; }
+
       .movil {
         display: block;
         position: relative;
@@ -159,30 +129,36 @@
         position: absolute;
         display: block;
         z-index: 10;
+        transition: transform 0.2s ease;
       }
 
-      .cine {
+      .enlace:active {
+        transform: scale(0.98);
+        background-color: rgba(255,255,255,0.1);
+      }
+
+      .enlace.cine {
         top: 5%;
         left: 5%;
         width: 35%;
         height: 20%;
       }
 
-      .diseno {
+      .enlace.diseno {
         top: 5%;
         right: 5%;
         width: 35%;
         height: 20%;
       }
 
-      .nombre {
+      .enlace.nombre {
         top: 42%;
         left: 25%;
         width: 50%;
         height: 12%;
       }
 
-      .fotografia {
+      .enlace.fotografia {
         bottom: 5%;
         left: 5%;
         width: 90%;
@@ -215,7 +191,7 @@
     </div>
 
     <div class="area-click diseno" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html', '_blank')">
-      <img src="diseno-ilustracion.png" alt="Diseño" class="ilustracion-diseno">
+      <img src="diseno-ilustracion.png" alt="Diseño Gráfico" class="ilustracion-diseno">
     </div>
   </div>
 
@@ -226,10 +202,31 @@
 
 <!-- VISTA MÓVIL -->
 <div class="movil">
-  <a class="enlace cine" href="cine.html"></a>
-  <a class="enlace diseno" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html" target="_blank"></a>
-  <a class="enlace nombre" href="carloscara.html"></a>
-  <a class="enlace fotografia" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html" target="_blank"></a>
+  <a class="enlace diseno"
+     href="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html"
+     target="_blank"
+     title="Portafolio de Diseño Gráfico"
+     aria-label="Portafolio de Diseño Gráfico">
+  </a>
+
+  <a class="enlace cine"
+     href="cine.html"
+     title="Sección Cine"
+     aria-label="Sección Cine">
+  </a>
+
+  <a class="enlace nombre"
+     href="carloscara.html"
+     title="Carlos Cara"
+     aria-label="Carlos Cara">
+  </a>
+
+  <a class="enlace fotografia"
+     href="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html"
+     target="_blank"
+     title="Portafolio de Fotografía"
+     aria-label="Portafolio de Fotografía">
+  </a>
 </div>
 
 <script>
@@ -250,3 +247,8 @@
 
 </body>
 </html>
+
+
+
+
+
