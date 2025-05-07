@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -16,60 +16,20 @@
       cursor: none;
     }
 
-    /* Estilo para la versión Web (pantallas grandes) */
+    /* Fondo para la versión Web */
     .contenedor-imagen {
       width: 100%;
       height: 100%;
       position: relative;
     }
 
-    /* Fondo para la versión Web */
     .imagen-fondo {
       width: 100%;
-      height: auto;
+      height: 100%;
       display: block;
     }
 
-    /* Áreas clicables para la versión web */
-    .area-click {
-      position: absolute;
-      z-index: 10;
-      background: transparent;
-      transition: all 0.4s ease-in-out;
-      cursor: pointer;
-    }
-
-    .area-click:hover {
-      background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3));
-      transform: scale(1.15) rotate(5deg) translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Estilos para las ilustraciones dentro de las áreas clicables */
-    .ilustracion {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 130%;
-      height: 130%;
-      object-fit: cover;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    }
-
-    .area-click:hover .ilustracion {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-
     /* Estilos específicos para la versión Web */
-    .fotografia { top: 10%; left: 10%; width: 30%; height: 25%; }
-    .nombre { top: 40%; left: 35%; width: 30%; height: 25%; }
-    .cine { top: 10%; right: 10%; width: 35%; height: 35%; }
-    .diseno { bottom: 10%; right: 5%; width: 30%; height: 25%; }
-
-    /* Líneas de arriba y abajo */
     .linea-superior, .linea-inferior {
       position: fixed;
       left: 0;
@@ -92,35 +52,32 @@
 
     /* Estilos para la versión móvil */
     @media (max-width: 768px) {
-      /* Para la versión móvil solo se ve la imagen homevertical.png */
       .contenedor-imagen {
         background: url('homevertical.png') no-repeat center center;
-        background-size: 100% 100%; /* Asegura que la imagen ocupe toda la pantalla */
+        background-size: cover; /* Asegura que la imagen ocupe toda la pantalla */
         height: 100vh; /* Asegura que la imagen ocupe toda la pantalla */
       }
 
-      /* Se desactivan los elementos de la versión web */
-      .imagen-fondo, .linea-superior, .linea-inferior {
+      /* Eliminamos la imagen web */
+      .imagen-fondo {
         display: none;
       }
 
-      /* Ajuste para las áreas clicables en móvil */
-      .area-click {
-        width: 100%;
-        height: 100%;
-        top: 0;
-        left: 0;
+      /* Desactivamos las líneas en móvil */
+      .linea-superior, .linea-inferior {
+        display: none;
+      }
+
+      /* Estilos para los enlaces */
+      .enlace {
         position: absolute;
         cursor: pointer;
-        z-index: 1;
+        display: block;
+        text-align: center;
+        color: transparent;
+        text-decoration: none;
       }
 
-      /* Eliminamos el cursor personalizado en la versión móvil */
-      .cursor {
-        display: none;
-      }
-
-      /* Aquí agregamos los enlaces de la versión móvil */
       .fotografia { top: 10%; left: 5%; width: 40%; height: 30%; }
       .nombre { top: 40%; left: 25%; width: 50%; height: 20%; }
       .cine { top: 10%; left: 50%; width: 40%; height: 30%; }
@@ -135,47 +92,15 @@
     <!-- Imagen de fondo web -->
     <img src="web-carlos.png" alt="Carlos Cara" class="imagen-fondo">
 
-    <!-- Enlaces con las áreas clicables, solo visibles en la versión móvil -->
-    <div class="area-click fotografia" onclick="window.location.href='https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html'">
-      <img src="foto-ilustracion.png" alt="Ilustración Fotografía" class="ilustracion" style="pointer-events: none;">
-    </div>
-    <div class="area-click nombre" onclick="window.location.href='carloscara.html'">
-      <img src="logocarlos.png" alt="Logo Carlos Cara" class="ilustracion" style="pointer-events: none;">
-    </div>
-    <div class="area-click cine" onclick="window.location.href='cine.html'">
-      <img src="cine-ilustracion.png" alt="Ilustración Cine" class="ilustracion" style="pointer-events: none;">
-    </div>
-    <div class="area-click diseno" onclick="window.location.href='https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html'">
-      <img src="diseno-ilustracion.png" alt="Ilustración Diseño Gráfico" class="ilustracion" style="pointer-events: none;">
-    </div>
+    <!-- Enlaces de la versión móvil -->
+    <a href="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html" class="enlace fotografia" title="Fotografía"></a>
+    <a href="carloscara.html" class="enlace nombre" title="Carlos Cara"></a>
+    <a href="cine.html" class="enlace cine" title="Cine"></a>
+    <a href="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html" class="enlace diseno" title="Diseño Gráfico"></a>
 
     <!-- Líneas que solo se muestran en la versión web -->
     <div class="linea-superior"></div>
     <div class="linea-inferior"></div>
   </div>
-
-  <!-- Cursor personalizado (no se verá en móvil) -->
-  <div class="cursor" id="cursor"></div>
-
-  <script>
-    // Script para el cursor personalizado
-    const cursor = document.getElementById('cursor');
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.pageX - cursor.offsetWidth / 2 + 'px';
-      cursor.style.top = e.pageY - cursor.offsetHeight / 2 + 'px';
-    });
-
-    const areas = document.querySelectorAll('.area-click');
-    areas.forEach(area => {
-      // Usamos 'touchstart' además de 'click' para dispositivos táctiles
-      area.addEventListener('click', (e) => {
-        window.location.href = e.currentTarget.getAttribute('onclick').split("'")[1];
-      });
-
-      area.addEventListener('touchstart', (e) => {
-        window.location.href = e.currentTarget.getAttribute('onclick').split("'")[1];
-      });
-    });
-  </script>
 </body>
 </html>
