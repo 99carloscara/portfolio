@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -167,11 +167,13 @@
 
     const areas = document.querySelectorAll('.area-click');
     areas.forEach(area => {
-      area.addEventListener('mouseenter', () => {
-        cursor.classList.add('cursor-hover');
+      // Usamos 'touchstart' además de 'click' para dispositivos táctiles
+      area.addEventListener('click', (e) => {
+        window.location.href = e.currentTarget.getAttribute('onclick').split("'")[1];
       });
-      area.addEventListener('mouseleave', () => {
-        cursor.classList.remove('cursor-hover');
+
+      area.addEventListener('touchstart', (e) => {
+        window.location.href = e.currentTarget.getAttribute('onclick').split("'")[1];
       });
     });
   </script>
