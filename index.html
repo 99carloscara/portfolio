@@ -13,10 +13,11 @@
       font-family: Arial, sans-serif;
       background-color: #000;
       cursor: none;
-      touch-action: manipulation;
     }
 
-    .web { display: block; }
+    .web {
+      display: block;
+    }
 
     .contenedor-imagen {
       width: 100%;
@@ -66,10 +67,34 @@
       100% { transform: scale(1); }
     }
 
-    .fotografia { top: 10%; left: 10%; width: 30%; height: 25%; }
-    .nombre     { top: 40%; left: 35%; width: 30%; height: 25%; z-index: 50; }
-    .cine       { top: 10%; right: 10%; width: 35%; height: 35%; }
-    .diseno     { bottom: 10%; right: 5%; width: 30%; height: 25%; }
+    .fotografia {
+      top: 10%;
+      left: 10%;
+      width: 30%;
+      height: 25%;
+    }
+
+    .nombre {
+      top: 40%;
+      left: 35%;
+      width: 30%;
+      height: 25%;
+      z-index: 50;
+    }
+
+    .cine {
+      top: 10%;
+      right: 10%;
+      width: 35%;
+      height: 35%;
+    }
+
+    .diseno {
+      bottom: 10%;
+      right: 5%;
+      width: 30%;
+      height: 25%;
+    }
 
     .ilustracion-foto, .ilustracion-logo, .ilustracion-cine, .ilustracion-diseno {
       position: absolute;
@@ -129,12 +154,6 @@
         position: absolute;
         display: block;
         z-index: 10;
-        transition: transform 0.2s ease;
-      }
-
-      .enlace:active {
-        transform: scale(0.98);
-        background-color: rgba(255,255,255,0.1);
       }
 
       .enlace.cine {
@@ -186,7 +205,7 @@
       <img src="logocarlos.png" alt="Carlos Cara" class="ilustracion-logo">
     </div>
 
-    <div class="area-click cine" onclick="window.location.href='cine.html'">
+    <div class="area-click cine" onclick="window.open('cine.html', '_self')">
       <img src="cine-ilustracion.png" alt="Cine" class="ilustracion-cine">
     </div>
 
@@ -202,69 +221,41 @@
 
 <!-- VISTA MÓVIL -->
 <div class="movil">
-  <div class="enlace diseno" data-url="https://www.flipsnack.com/fanzinecatalogue/portfolio-diseno-grafico/full-view.html"></div>
+  <div class="enlace diseno" data-url="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html"></div>
   <div class="enlace cine" data-url="cine.html"></div>
   <div class="enlace nombre" data-url="carloscara.html"></div>
   <div class="enlace fotografia" data-url="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html"></div>
 </div>
 
-<style>
-  /* Ajusta estas posiciones a tu diseño (por ejemplo, sobre una imagen de fondo) */
-  .movil {
-    position: relative;
-    width: 100vw;
-    height: 100vh;
-  }
-
-  .enlace {
-    position: absolute;
-    z-index: 10;
-  }
-
-  .diseno {
-    top: 10%;
-    left: 5%;
-    width: 40%;
-    height: 20%;
-  }
-
-  .cine {
-    top: 35%;
-    left: 5%;
-    width: 40%;
-    height: 20%;
-  }
-
-  .nombre {
-    top: 60%;
-    left: 5%;
-    width: 40%;
-    height: 20%;
-  }
-
-  .fotografia {
-    top: 85%;
-    left: 5%;
-    width: 40%;
-    height: 10%;
-  }
-</style>
-
 <script>
-  function vibrar(ms = 50) {
-    if ('vibrate' in navigator) {
-      navigator.vibrate(ms);
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', (e) => {
+    if (cursor) {
+      cursor.style.left = e.pageX - cursor.offsetWidth / 2 + 'px';
+      cursor.style.top = e.pageY - cursor.offsetHeight / 2 + 'px';
     }
-  }
+  });
 
-  document.querySelectorAll('.movil .enlace').forEach(el => {
-    el.addEventListener('touchstart', (e) => {
-      e.preventDefault();
-      vibrar();
-      const url = el.dataset.url;
-      if (url) {
-        window.location.href = url;
-      }
+  const areas = document.querySelectorAll('.area-click');
+  areas.forEach(area => {
+    area.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+    area.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+  });
+
+  // Enlaces en móvil + vibración
+  const enlacesMovil = document.querySelectorAll('.movil .enlace');
+  enlacesMovil.forEach(enlace => {
+    enlace.addEventListener('touchstart', () => {
+      if (navigator.vibrate) navigator.vibrate(100);
+    });
+
+    enlace.addEventListener('click', () => {
+      const url = enlace.getAttribute('data-url');
+      if (url) window.open(url, '_blank');
     });
   });
 </script>
+
+</body>
+</html>
+
