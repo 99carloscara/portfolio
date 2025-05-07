@@ -5,67 +5,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Carlos Cara</title>
   <style>
+    /* Estilos generales para todo */
     body, html {
       margin: 0;
       padding: 0;
       width: 100%;
+      height: 100%;
       font-family: Arial, sans-serif;
       background-color: #000;
       cursor: none;
     }
 
-    /* Contenedor principal */
+    /* Estilo para la versión Web (pantallas grandes) */
     .contenedor-imagen {
       width: 100%;
+      height: 100%;
       position: relative;
-      height: 100vh; /* Ocupa toda la altura de la pantalla */
     }
 
-    /* Imagen de fondo para web */
+    /* Fondo para la versión Web */
     .imagen-fondo {
       width: 100%;
       height: auto;
       display: block;
     }
 
-    /* Móvil: Imagen de fondo para dispositivos móviles */
-    @media (max-width: 768px) {
-      .imagen-fondo {
-        display: none; /* Ocultamos la imagen de fondo para web */
-      }
-      .contenedor-imagen {
-        background-image: url('homevertical.png');
-        background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
-        background-position: center; /* Centra la imagen */
-        background-repeat: no-repeat; /* Evita que la imagen se repita */
-        height: 100vh; /* Hace que la imagen ocupe toda la altura de la pantalla */
-      }
-    }
-
-    /* Estilo del cursor */
-    .cursor {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: radial-gradient(circle, rgba(0, 102, 255, 1) 30%, rgba(255, 255, 255, 0) 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      transition: transform 0.1s ease, background 0.2s ease;
-      z-index: 10000;
-    }
-
-    .cursor-hover {
-      transform: scale(1.5);
-      background: radial-gradient(circle, rgba(0, 102, 255, 1) 50%, rgba(255, 255, 255, 0) 80%);
-    }
-
-    /* Áreas de clic */
+    /* Áreas clicables para la versión web */
     .area-click {
       position: absolute;
       z-index: 10;
       background: transparent;
       transition: all 0.4s ease-in-out;
-      cursor: none;
+      cursor: pointer;
     }
 
     .area-click:hover {
@@ -74,11 +45,8 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
 
-    /* Estilo de las imágenes dentro de los enlaces */
-    .ilustracion-foto,
-    .ilustracion-logo,
-    .ilustracion-cine,
-    .ilustracion-diseno {
+    /* Estilos para las ilustraciones dentro de las áreas clicables */
+    .ilustracion {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -90,47 +58,18 @@
       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
 
-    .area-click:hover .ilustracion-foto,
-    .area-click:hover .ilustracion-logo,
-    .area-click:hover .ilustracion-cine,
-    .area-click:hover .ilustracion-diseno {
+    .area-click:hover .ilustracion {
       opacity: 1;
       transform: translate(-50%, -50%) scale(1.2);
     }
 
-    /* FOTOGRAFÍA */
-    .fotografia {
-      top: 10%;
-      left: 10%;
-      width: 30%;
-      height: 25%;
-    }
+    /* Estilos específicos para la versión Web */
+    .fotografia { top: 10%; left: 10%; width: 30%; height: 25%; }
+    .nombre { top: 40%; left: 35%; width: 30%; height: 25%; }
+    .cine { top: 10%; right: 10%; width: 35%; height: 35%; }
+    .diseno { bottom: 10%; right: 5%; width: 30%; height: 25%; }
 
-    /* NOMBRE */
-    .nombre {
-      top: 40%;
-      left: 35%;
-      width: 30%;
-      height: 25%;
-    }
-
-    /* CINE */
-    .cine {
-      top: 10%;
-      right: 10%;
-      width: 35%;
-      height: 35%;
-    }
-
-    /* DISEÑO */
-    .diseno {
-      bottom: 10%;
-      right: 5%;
-      width: 30%;
-      height: 25%;
-    }
-
-    /* LÍNEAS SUPERIOR E INFERIOR */
+    /* Líneas de arriba y abajo */
     .linea-superior, .linea-inferior {
       position: fixed;
       left: 0;
@@ -142,13 +81,8 @@
       animation: moverLineas 3s ease-in-out infinite;
     }
 
-    .linea-superior {
-      top: 0;
-    }
-
-    .linea-inferior {
-      bottom: 0;
-    }
+    .linea-superior { top: 0; }
+    .linea-inferior { bottom: 0; }
 
     @keyframes moverLineas {
       0% { transform: translateX(0); }
@@ -156,73 +90,72 @@
       100% { transform: translateX(0); }
     }
 
-    /* Ajustes específicos para móvil */
+    /* Estilos para la versión móvil */
     @media (max-width: 768px) {
+      /* Para la versión móvil solo se ve la imagen homevertical.png */
+      .contenedor-imagen {
+        background: url('homevertical.png') no-repeat center center;
+        background-size: cover;
+        height: 100vh; /* Asegura que la imagen ocupe toda la pantalla */
+      }
+
+      /* Se desactivan los elementos de la versión web */
+      .imagen-fondo, .area-click, .linea-superior, .linea-inferior {
+        display: none;
+      }
+
+      /* Ajuste para las áreas clicables en móvil */
       .area-click {
-        width: 80%;
-        height: 30%;
-        margin: 10% auto;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        position: absolute;
       }
 
-      .fotografia,
-      .nombre,
-      .cine,
-      .diseno {
-        width: 80%;
-        height: 25vh;
-        margin: 10px auto;
-      }
-
-      .linea-superior,
-      .linea-inferior {
-        display: none; /* Ocultamos las líneas en móvil */
-      }
-
+      /* Eliminamos el cursor personalizado en la versión móvil */
       .cursor {
-        display: none; /* Ocultamos el cursor en móvil */
-      }
-
-      /* Ajustes a las imágenes de los enlaces */
-      .ilustracion-foto,
-      .ilustracion-logo,
-      .ilustracion-cine,
-      .ilustracion-diseno {
-        display: none; /* Ocultamos las imágenes de los enlaces en móvil */
+        display: none;
       }
     }
 
+    /* Usamos unidades relativas para asegurar una correcta adaptación en pantallas de todo tamaño */
+    @media (max-width: 1024px) {
+      /* Estilo adicional para pantallas intermedias */
+      .contenedor-imagen {
+        background-size: contain; /* Permite que la imagen se ajuste mejor */
+        background-position: center top; /* Mantiene el fondo centrado */
+        height: 100vh; /* Utiliza toda la altura visible */
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Contenedor de la imagen de fondo -->
   <div class="contenedor-imagen">
+    <!-- Imagen de fondo web -->
     <img src="web-carlos.png" alt="Carlos Cara" class="imagen-fondo">
 
-    <!-- FOTOGRAFÍA -->
+    <!-- Enlaces con las áreas clicables, solo visibles en la versión web -->
     <div class="area-click fotografia" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html', '_blank')">
-      <img src="foto-ilustracion.png" alt="Ilustración Fotografía" class="ilustracion-foto">
+      <img src="foto-ilustracion.png" alt="Ilustración Fotografía" class="ilustracion">
     </div>
-
-    <!-- NOMBRE / ENLACE A CARLOS CARA -->
     <div class="area-click nombre" onclick="window.location.href='carloscara.html'">
-      <img src="logocarlos.png" alt="Logo Carlos Cara" class="ilustracion-logo">
+      <img src="logocarlos.png" alt="Logo Carlos Cara" class="ilustracion">
     </div>
-
-    <!-- CINE -->
     <div class="area-click cine" onclick="window.open('cine.html', '_blank')">
-      <img src="cine-ilustracion.png" alt="Ilustración Cine" class="ilustracion-cine">
+      <img src="cine-ilustracion.png" alt="Ilustración Cine" class="ilustracion">
+    </div>
+    <div class="area-click diseno" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html', '_blank')">
+      <img src="diseno-ilustracion.png" alt="Ilustración Diseño Gráfico" class="ilustracion">
     </div>
 
-    <!-- DISEÑO -->
-    <div class="area-click diseno" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html', '_blank')">
-      <img src="diseno-ilustracion.png" alt="Ilustración Diseño Gráfico" class="ilustracion-diseno">
-    </div>
+    <!-- Líneas que solo se muestran en la versión web -->
+    <div class="linea-superior"></div>
+    <div class="linea-inferior"></div>
   </div>
 
-  <!-- LÍNEAS -->
-  <div class="linea-superior"></div>
-  <div class="linea-inferior"></div>
-
-  <!-- CURSOR -->
+  <!-- Cursor personalizado -->
   <div class="cursor" id="cursor"></div>
 
   <script>
