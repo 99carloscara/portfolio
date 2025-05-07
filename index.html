@@ -29,28 +29,7 @@
       display: block;
     }
 
-    /* Estilos específicos para la versión Web */
-    .linea-superior, .linea-inferior {
-      position: fixed;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, #0066ff, #66aaff, #0066ff);
-      box-shadow: 0 0 10px rgba(0, 102, 255, 0.8);
-      z-index: 5;
-      animation: moverLineas 3s ease-in-out infinite;
-    }
-
-    .linea-superior { top: 0; }
-    .linea-inferior { bottom: 0; }
-
-    @keyframes moverLineas {
-      0% { transform: translateX(0); }
-      50% { transform: translateX(10px); }
-      100% { transform: translateX(0); }
-    }
-
-    /* Estilos para la versión móvil */
+    /* Estilos específicos para la versión móvil */
     @media (max-width: 768px) {
       .contenedor-imagen {
         background: url('homevertical.png') no-repeat center center;
@@ -78,10 +57,34 @@
         text-decoration: none;
       }
 
-      .fotografia { top: 10%; left: 5%; width: 40%; height: 30%; }
-      .nombre { top: 40%; left: 25%; width: 50%; height: 20%; }
-      .cine { top: 10%; left: 50%; width: 40%; height: 30%; }
-      .diseno { bottom: 10%; left: 5%; width: 40%; height: 30%; }
+      /* Posiciones para cada enlace según la imagen */
+      .fotografia {
+        top: 10%;
+        left: 5%;
+        width: 40%;
+        height: 30%;
+      }
+      
+      .nombre {
+        top: 40%;
+        left: 25%;
+        width: 50%;
+        height: 20%;
+      }
+
+      .cine {
+        top: 10%;
+        left: 50%;
+        width: 40%;
+        height: 30%;
+      }
+
+      .diseno {
+        bottom: 10%;
+        left: 5%;
+        width: 40%;
+        height: 30%;
+      }
     }
 
   </style>
@@ -89,7 +92,7 @@
 <body>
   <!-- Contenedor de la imagen de fondo -->
   <div class="contenedor-imagen">
-    <!-- Imagen de fondo web -->
+    <!-- Imagen de fondo web (se muestra solo en escritorio) -->
     <img src="web-carlos.png" alt="Carlos Cara" class="imagen-fondo">
 
     <!-- Enlaces de la versión móvil -->
