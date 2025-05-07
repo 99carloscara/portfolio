@@ -209,7 +209,14 @@
       <img src="cine-ilustracion.png" alt="Cine" class="ilustracion-cine">
     </div>
 
-    <div class="area-click diseno" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html', '_blank')">
+ <div class="enlace diseno" onclick="abrirEnlace('https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html')"></div>
+<script>
+  function abrirEnlace(url) {
+    if (navigator.vibrate) navigator.vibrate(100);
+    window.open(url, '_blank');
+  }
+</script>
+
       <img src="diseno-ilustracion.png" alt="Diseño Gráfico" class="ilustracion-diseno">
     </div>
   </div>
