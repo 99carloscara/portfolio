@@ -197,7 +197,7 @@
   <div class="contenedor-imagen">
     <img src="web-carlos.png" alt="Carlos Cara" class="imagen-fondo">
 
-    <div class="area-click fotografia" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html', '_blank')">
+    <div class="area-click fotografia" onclick="abrirEnlace('https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html')">
       <img src="foto-ilustracion.png" alt="Fotografía" class="ilustracion-foto">
     </div>
 
@@ -205,18 +205,11 @@
       <img src="logocarlos.png" alt="Carlos Cara" class="ilustracion-logo">
     </div>
 
-    <div class="area-click cine" onclick="window.open('cine.html', '_self')">
+    <div class="area-click cine" onclick="window.location.href='proyectos-cine.html'">
       <img src="cine-ilustracion.png" alt="Cine" class="ilustracion-cine">
     </div>
 
- <div class="enlace diseno" onclick="abrirEnlace('https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html')"></div>
-<script>
-  function abrirEnlace(url) {
-    if (navigator.vibrate) navigator.vibrate(100);
-    window.open(url, '_blank');
-  }
-</script>
-
+    <div class="area-click diseno" onclick="abrirEnlace('https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html')">
       <img src="diseno-ilustracion.png" alt="Diseño Gráfico" class="ilustracion-diseno">
     </div>
   </div>
@@ -228,10 +221,10 @@
 
 <!-- VISTA MÓVIL -->
 <div class="movil">
-  <div class="enlace diseno" data-url="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html"></div>
-  <div class="enlace cine" data-url="cine.html"></div>
-  <div class="enlace nombre" data-url="carloscara.html"></div>
-  <div class="enlace fotografia" data-url="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html"></div>
+  <a class="enlace diseno" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html" target="_blank"></a>
+  <a class="enlace cine" href="proyectos-cine.html"></a>
+  <a class="enlace nombre" href="carloscara.html"></a>
+  <a class="enlace fotografia" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html" target="_blank"></a>
 </div>
 
 <script>
@@ -249,16 +242,15 @@
     area.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
   });
 
-  // Enlaces en móvil + vibración
-  const enlacesMovil = document.querySelectorAll('.movil .enlace');
-  enlacesMovil.forEach(enlace => {
-    enlace.addEventListener('touchstart', () => {
-      if (navigator.vibrate) navigator.vibrate(100);
-    });
+  function abrirEnlace(url) {
+    if (navigator.vibrate) navigator.vibrate(100);
+    window.open(url, '_blank');
+  }
+</script>
 
-    enlace.addEventListener('click', () => {
-      const url = enlace.getAttribute('data-url');
-      if (url) window.open(url, '_blank');
+</body>
+</html>
+
     });
   });
 </script>
