@@ -10,7 +10,7 @@
       font-family: 'Helvetica', sans-serif;
       background-color: #000;
       overflow-x: hidden;
-      cursor: none; /* Esconde el cursor por defecto */
+      cursor: none;
     }
 
     .container {
@@ -27,7 +27,7 @@
 
     .link {
       position: absolute;
-      color: #0066ff; /* Azul eléctrico igual que las líneas */
+      color: #0066ff;
       font-size: 1.4vw;
       text-align: center;
       text-decoration: none;
@@ -35,6 +35,7 @@
       line-height: 1.4;
       text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
       transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease;
+      padding: 0.5em;
     }
 
     .link:hover {
@@ -42,7 +43,6 @@
       text-shadow: 0 0 12px rgba(0,102,255,0.9);
     }
 
-    /* Posiciones ajustadas al fondo */
     .amor       { top: 15%; left: 13%; }
     .puerta     { top: 15%; right: 13%; }
     .apariencia { bottom: 10%; left: 13%; }
@@ -50,31 +50,39 @@
     .billete    { top: 48%; left: 50%; transform: translateX(-50%); }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* Estilo del cursor en forma de círculo con gradiente */
     .cursor {
       position: absolute;
       width: 40px;
       height: 40px;
       background: radial-gradient(circle, rgba(0, 204, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
       border-radius: 50%;
-      pointer-events: none; /* Hace que el cursor no interfiera con los clics */
+      pointer-events: none;
       transform: translate(-50%, -50%);
       transition: all 0.1s ease;
     }
 
     @media (max-width: 768px) {
       .link {
-        font-size: 3.5vw;
+        font-size: 5vw;
+        padding: 0.8em;
+      }
+
+      .amor       { top: 10%; left: 10%; }
+      .puerta     { top: 22%; left: 10%; }
+      .apariencia { top: 34%; left: 10%; }
+      .no-salgo   { top: 46%; left: 10%; }
+      .billete    { top: 58%; left: 10%; transform: none; }
+
+      .cursor {
+        display: none;
+      }
+
+      body {
+        cursor: default;
       }
     }
   </style>
@@ -84,21 +92,22 @@
     <img src="cine.png" alt="Fondo" class="background" />
 
     <a href="amor-tizar.html" class="link amor">amor-tizar mi tiempo<br>(cortometraje 17:54)</a>
-<a href="lapuerta.html" class="link puerta">la puerta<br>(cortometraje 02:27)</a>
-<a href="alapariencia.html" class="link apariencia">la apariencia por el culo<br>(cortometraje 08:09)</a>
-<a href="nosalgomas.html" class="link no-salgo">no salgo más<br>(webserie 04:09)</a>
-<a href="billete.html" class="link billete">billete de ida<br>(videoclip 03:07)</a>
+    <a href="lapuerta.html" class="link puerta">la puerta<br>(cortometraje 02:27)</a>
+    <a href="alapariencia.html" class="link apariencia">la apariencia por el culo<br>(cortometraje 08:09)</a>
+    <a href="nosalgomas.html" class="link no-salgo">no salgo más<br>(webserie 04:09)</a>
+    <a href="billete.html" class="link billete">billete de ida<br>(videoclip 03:07)</a>
   </div>
 
-  <div class="cursor"></div> <!-- Elemento del cursor personalizado -->
+  <div class="cursor"></div>
 
   <script>
-    // Movimiento del cursor
     const cursor = document.querySelector('.cursor');
 
     document.addEventListener('mousemove', (e) => {
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
+      if (window.innerWidth > 768) {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+      }
     });
   </script>
 </body>
