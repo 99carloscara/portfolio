@@ -1,4 +1,4 @@
-<!DOCTYPE html><!DOCTYPE<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -100,7 +100,7 @@
       }
 
       /* Se desactivan los elementos de la versión web */
-      .imagen-fondo, .area-click, .linea-superior, .linea-inferior {
+      .imagen-fondo, .linea-superior, .linea-inferior {
         display: none;
       }
 
@@ -112,6 +112,7 @@
         left: 0;
         position: absolute;
         cursor: pointer;
+        z-index: 1;
       }
 
       /* Eliminamos el cursor personalizado en la versión móvil */
@@ -135,17 +136,17 @@
     <img src="web-carlos.png" alt="Carlos Cara" class="imagen-fondo">
 
     <!-- Enlaces con las áreas clicables, solo visibles en la versión móvil -->
-    <div class="area-click fotografia" onclick="location.href='https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html'">
-      <img src="foto-ilustracion.png" alt="Ilustración Fotografía" class="ilustracion">
+    <div class="area-click fotografia" onclick="window.location.href='https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html'">
+      <img src="foto-ilustracion.png" alt="Ilustración Fotografía" class="ilustracion" style="pointer-events: none;">
     </div>
-    <div class="area-click nombre" onclick="location.href='carloscara.html'">
-      <img src="logocarlos.png" alt="Logo Carlos Cara" class="ilustracion">
+    <div class="area-click nombre" onclick="window.location.href='carloscara.html'">
+      <img src="logocarlos.png" alt="Logo Carlos Cara" class="ilustracion" style="pointer-events: none;">
     </div>
-    <div class="area-click cine" onclick="location.href='cine.html'">
-      <img src="cine-ilustracion.png" alt="Ilustración Cine" class="ilustracion">
+    <div class="area-click cine" onclick="window.location.href='cine.html'">
+      <img src="cine-ilustracion.png" alt="Ilustración Cine" class="ilustracion" style="pointer-events: none;">
     </div>
-    <div class="area-click diseno" onclick="location.href='https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html'">
-      <img src="diseno-ilustracion.png" alt="Ilustración Diseño Gráfico" class="ilustracion">
+    <div class="area-click diseno" onclick="window.location.href='https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html'">
+      <img src="diseno-ilustracion.png" alt="Ilustración Diseño Gráfico" class="ilustracion" style="pointer-events: none;">
     </div>
 
     <!-- Líneas que solo se muestran en la versión web -->
