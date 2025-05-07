@@ -16,24 +16,25 @@
       height: 100%;
       font-family: Arial, sans-serif;
       background-color: #000;
-      overflow: hidden;
+      cursor: none;
     }
 
-    /* ------- FORMATO WEB -------- */
     .web {
       display: block;
     }
 
+    .movil {
+      display: none;
+    }
+
     .contenedor-imagen {
       width: 100%;
-      height: 100vh;
       position: relative;
     }
 
     .imagen-fondo {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
     }
 
@@ -74,28 +75,29 @@
       100% { transform: scale(1); }
     }
 
+    /* Áreas web */
     .fotografia {
       top: 10%;
       left: 10%;
       width: 30%;
       height: 25%;
+      overflow: visible;
     }
 
-    .ilustracion-foto {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 130%;
-      height: 130%;
-      object-fit: cover;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    .cine {
+      top: 10%;
+      right: 10%;
+      width: 35%;
+      height: 35%;
+      overflow: visible;
     }
 
-    .area-click.fotografia:hover .ilustracion-foto {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.2);
+    .diseno {
+      bottom: 10%;
+      right: 5%;
+      width: 30%;
+      height: 25%;
+      overflow: visible;
     }
 
     .nombre {
@@ -106,34 +108,13 @@
       z-index: 50;
       position: absolute;
       cursor: none;
+      overflow: visible;
     }
 
-    .ilustracion-logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 130%;
-      height: 130%;
-      object-fit: contain;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    }
-
-    .area-click.nombre:hover .ilustracion-logo {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-
-    .cine {
-      top: 10%;
-      right: 10%;
-      width: 35%;
-      height: 35%;
-    }
-
+    .ilustracion-foto,
     .ilustracion-cine,
-    .ilustracion-diseno {
+    .ilustracion-diseno,
+    .ilustracion-logo {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -145,17 +126,14 @@
       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
 
-    .area-click.cine:hover .ilustracion-cine,
-    .area-click.diseno:hover .ilustracion-diseno {
+    .ilustracion-logo { object-fit: contain; }
+
+    .area-click:hover .ilustracion-foto,
+    .area-click:hover .ilustracion-cine,
+    .area-click:hover .ilustracion-diseno,
+    .area-click:hover .ilustracion-logo {
       opacity: 1;
       transform: translate(-50%, -50%) scale(1.2);
-    }
-
-    .diseno {
-      bottom: 10%;
-      right: 5%;
-      width: 30%;
-      height: 25%;
     }
 
     .linea-superior, .linea-inferior {
@@ -178,7 +156,7 @@
       100% { transform: translateX(0); }
     }
 
-    /* ------- FORMATO MOVIL -------- */
+    /* Versión móvil */
     @media (max-width: 768px) {
       .web { display: none; }
       .movil {
@@ -194,57 +172,82 @@
         position: absolute;
         display: block;
         z-index: 10;
-        transition: background 0.2s ease;
       }
 
       .enlace:active {
-        background: rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.1);
         border-radius: 10px;
       }
 
-      .cine { top: 5%; left: 5%; width: 40%; height: 20%; }
-      .diseno { top: 5%; right: 5%; width: 40%; height: 20%; }
-      .nombre { top: 42%; left: 25%; width: 50%; height: 12%; }
-      .fotografia { bottom: 5%; left: 5%; width: 90%; height: 20%; }
+      .cine {
+        top: 5%;
+        left: 5%;
+        width: 35%;
+        height: 20%;
+      }
+
+      .diseno {
+        top: 5%;
+        right: 5%;
+        width: 35%;
+        height: 20%;
+      }
+
+      .nombre {
+        top: 42%;
+        left: 25%;
+        width: 50%;
+        height: 12%;
+      }
+
+      .fotografia {
+        bottom: 5%;
+        left: 5%;
+        width: 90%;
+        height: 18%;
+      }
+
+      .cursor, .linea-superior, .linea-inferior {
+        display: none;
+      }
     }
   </style>
 </head>
-
 <body>
-  <!-- FORMATO WEB -->
+
+  <!-- VISTA WEB -->
   <div class="web">
     <div class="contenedor-imagen">
       <img src="web-carlos.png" alt="Carlos Cara" class="imagen-fondo">
 
       <div class="area-click fotografia" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html', '_blank')">
-        <img src="foto-ilustracion.png" alt="Fotografía" class="ilustracion-foto">
-      </div>
-
-      <div class="area-click nombre" onclick="window.location.href='carloscara.html'">
-        <img src="logocarlos.png" alt="Carlos Cara" class="ilustracion-logo">
+        <img src="foto-ilustracion.png" class="ilustracion-foto" alt="">
       </div>
 
       <div class="area-click cine" onclick="window.open('cine.html', '_blank')">
-        <img src="cine-ilustracion.png" alt="Cine" class="ilustracion-cine">
+        <img src="cine-ilustracion.png" class="ilustracion-cine" alt="">
       </div>
 
       <div class="area-click diseno" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html', '_blank')">
-        <img src="diseno-ilustracion.png" alt="Diseño" class="ilustracion-diseno">
+        <img src="diseno-ilustracion.png" class="ilustracion-diseno" alt="">
+      </div>
+
+      <div class="area-click nombre" onclick="window.location.href='carloscara.html'">
+        <img src="logocarlos.png" class="ilustracion-logo" alt="">
       </div>
     </div>
 
     <div class="linea-superior"></div>
     <div class="linea-inferior"></div>
-
     <div class="cursor" id="cursor"></div>
   </div>
 
-  <!-- FORMATO MOVIL -->
+  <!-- VISTA MÓVIL -->
   <div class="movil">
-    <a href="cine.html" class="enlace cine" title="Cine"></a>
-    <a href="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html" class="enlace diseno" title="Diseño Gráfico"></a>
-    <a href="carloscara.html" class="enlace nombre" title="Carlos Cara"></a>
-    <a href="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html" class="enlace fotografia" title="Fotografía"></a>
+    <a class="enlace cine" href="cine.html"></a>
+    <a class="enlace diseno" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html" target="_blank"></a>
+    <a class="enlace nombre" href="carloscara.html"></a>
+    <a class="enlace fotografia" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html" target="_blank"></a>
   </div>
 
   <script>
@@ -256,8 +259,12 @@
 
     const areas = document.querySelectorAll('.area-click');
     areas.forEach(area => {
-      area.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
-      area.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+      area.addEventListener('mouseenter', () => {
+        cursor.classList.add('cursor-hover');
+      });
+      area.addEventListener('mouseleave', () => {
+        cursor.classList.remove('cursor-hover');
+      });
     });
   </script>
 </body>
