@@ -2,34 +2,27 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carlos Cara</title>
   <style>
-    * {
+    body, html {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    body, html {
       width: 100%;
       height: 100%;
       font-family: Arial, sans-serif;
       background-color: #000;
       cursor: none;
     }
-.enlace {
-  position: absolute;
-  display: block;
-  z-index: 1000;
-}
 
-    .web {
-      display: block;
-    }
-
+    /* OCULTAR MOVIL POR DEFECTO */
     .movil {
       display: none;
+    }
+
+    /* VERSIÓN WEB */
+    .web {
+      display: block;
     }
 
     .contenedor-imagen {
@@ -80,46 +73,14 @@
       100% { transform: scale(1); }
     }
 
-    /* Áreas web */
     .fotografia {
       top: 10%;
       left: 10%;
       width: 30%;
       height: 25%;
-      overflow: visible;
     }
 
-    .cine {
-      top: 10%;
-      right: 10%;
-      width: 35%;
-      height: 35%;
-      overflow: visible;
-    }
-
-    .diseno {
-      bottom: 10%;
-      right: 5%;
-      width: 30%;
-      height: 25%;
-      overflow: visible;
-    }
-
-    .nombre {
-      top: 40%;
-      left: 35%;
-      width: 30%;
-      height: 25%;
-      z-index: 50;
-      position: absolute;
-      cursor: none;
-      overflow: visible;
-    }
-
-    .ilustracion-foto,
-    .ilustracion-cine,
-    .ilustracion-diseno,
-    .ilustracion-logo {
+    .ilustracion-foto, .ilustracion-logo, .ilustracion-cine, .ilustracion-diseno {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -131,14 +92,34 @@
       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
 
-    .ilustracion-logo { object-fit: contain; }
-
     .area-click:hover .ilustracion-foto,
+    .area-click:hover .ilustracion-logo,
     .area-click:hover .ilustracion-cine,
-    .area-click:hover .ilustracion-diseno,
-    .area-click:hover .ilustracion-logo {
+    .area-click:hover .ilustracion-diseno {
       opacity: 1;
       transform: translate(-50%, -50%) scale(1.2);
+    }
+
+    .nombre {
+      top: 40%;
+      left: 35%;
+      width: 30%;
+      height: 25%;
+      z-index: 50;
+    }
+
+    .cine {
+      top: 10%;
+      right: 10%;
+      width: 35%;
+      height: 35%;
+    }
+
+    .diseno {
+      bottom: 10%;
+      right: 5%;
+      width: 30%;
+      height: 25%;
     }
 
     .linea-superior, .linea-inferior {
@@ -161,27 +142,23 @@
       100% { transform: translateX(0); }
     }
 
-    /* Versión móvil */
+    /* VERSIÓN MÓVIL */
     @media (max-width: 768px) {
       .web { display: none; }
       .movil {
         display: block;
+        position: relative;
         width: 100%;
         height: 100vh;
-        position: relative;
-        background: url('homevertical.png') no-repeat center center;
+        background-image: url('homevertical.png');
         background-size: cover;
+        background-position: center;
       }
 
       .enlace {
         position: absolute;
         display: block;
         z-index: 10;
-      }
-
-      .enlace:active {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 10px;
       }
 
       .cine {
@@ -220,62 +197,56 @@
 </head>
 <body>
 
-  <!-- VISTA WEB -->
-  <div class="web">
-    <div class="contenedor-imagen">
-      <img src="web-carlos.png" alt="Carlos Cara" class="imagen-fondo">
+<!-- VISTA WEB -->
+<div class="web">
+  <div class="contenedor-imagen">
+    <img src="web-carlos.png" alt="Carlos Cara" class="imagen-fondo">
 
-      <!-- ÁREA DE FOTOGRAFÍA CORREGIDA -->
-      <div class="area-click fotografia" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html', '_blank')">
-        <img src="foto-ilustracion.png" class="ilustracion-foto" alt="Portfolio Fotografía">
-      </div>
-
-      <div class="area-click cine" onclick="window.open('cine.html', '_blank')">
-        <img src="cine-ilustracion.png" class="ilustracion-cine" alt="Portfolio Cine">
-      </div>
-
-      <div class="area-click diseno" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html', '_blank')">
-        <img src="diseno-ilustracion.png" class="ilustracion-diseno" alt="Portfolio Diseño">
-      </div>
-
-      <div class="area-click nombre" onclick="window.location.href='carloscara.html'">
-        <img src="logocarlos.png" class="ilustracion-logo" alt="Carlos Cara">
-      </div>
+    <div class="area-click fotografia" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html', '_blank')">
+      <img src="foto-ilustracion.png" alt="Fotografía" class="ilustracion-foto">
     </div>
 
-    <div class="linea-superior"></div>
-    <div class="linea-inferior"></div>
-    <div class="cursor" id="cursor"></div>
+    <div class="area-click nombre" onclick="window.location.href='carloscara.html'">
+      <img src="logocarlos.png" alt="Carlos Cara" class="ilustracion-logo">
+    </div>
+
+    <div class="area-click cine" onclick="window.open('cine.html', '_blank')">
+      <img src="cine-ilustracion.png" alt="Cine" class="ilustracion-cine">
+    </div>
+
+    <div class="area-click diseno" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html', '_blank')">
+      <img src="diseno-ilustracion.png" alt="Diseño" class="ilustracion-diseno">
+    </div>
   </div>
 
- <div class="movil">
-  <!-- ÁREA DE FOTOGRAFÍA EN MÓVIL -->
-  <a class="enlace fotografia" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html" target="_blank" style="top: 75%; left: 5%; width: 90%; height: 18%;"></a>
-
-  <a class="enlace diseno" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html" target="_blank" style="top: 5%; right: 5%; width: 35%; height: 20%;"></a>
-
-  <a class="enlace cine" href="cine.html" style="top: 5%; left: 5%; width: 35%; height: 20%;"></a>
-
-  <a class="enlace nombre" href="carloscara.html" style="top: 42%; left: 25%; width: 50%; height: 12%;"></a>
+  <div class="linea-superior"></div>
+  <div class="linea-inferior"></div>
+  <div class="cursor" id="cursor"></div>
 </div>
 
+<!-- VISTA MÓVIL -->
+<div class="movil">
+  <a class="enlace cine" href="cine.html"></a>
+  <a class="enlace diseno" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html" target="_blank"></a>
+  <a class="enlace nombre" href="carloscara.html"></a>
+  <a class="enlace fotografia" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html" target="_blank"></a>
+</div>
 
-  <script>
-    const cursor = document.getElementById('cursor');
-    document.addEventListener('mousemove', (e) => {
+<script>
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', (e) => {
+    if (cursor) {
       cursor.style.left = e.pageX - cursor.offsetWidth / 2 + 'px';
       cursor.style.top = e.pageY - cursor.offsetHeight / 2 + 'px';
-    });
+    }
+  });
 
-    const areas = document.querySelectorAll('.area-click');
-    areas.forEach(area => {
-      area.addEventListener('mouseenter', () => {
-        cursor.classList.add('cursor-hover');
-      });
-      area.addEventListener('mouseleave', () => {
-        cursor.classList.remove('cursor-hover');
-      });
-    });
-  </script>
+  const areas = document.querySelectorAll('.area-click');
+  areas.forEach(area => {
+    area.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+    area.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+  });
+</script>
+
 </body>
 </html>
