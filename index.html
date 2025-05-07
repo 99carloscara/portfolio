@@ -1,4 +1,4 @@
-<!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -117,17 +117,14 @@
       .cursor {
         display: none;
       }
+
+      /* Aquí agregamos los enlaces de la versión móvil */
+      .fotografia { top: 10%; left: 5%; width: 40%; height: 30%; }
+      .nombre { top: 40%; left: 25%; width: 50%; height: 20%; }
+      .cine { top: 10%; left: 50%; width: 40%; height: 30%; }
+      .diseno { bottom: 10%; left: 5%; width: 40%; height: 30%; }
     }
 
-    /* Usamos unidades relativas para asegurar una correcta adaptación en pantallas de todo tamaño */
-    @media (max-width: 1024px) {
-      /* Estilo adicional para pantallas intermedias */
-      .contenedor-imagen {
-        background-size: contain; /* Permite que la imagen se ajuste mejor */
-        background-position: center top; /* Mantiene el fondo centrado */
-        height: 100vh; /* Utiliza toda la altura visible */
-      }
-    }
   </style>
 </head>
 <body>
@@ -136,7 +133,7 @@
     <!-- Imagen de fondo web -->
     <img src="web-carlos.png" alt="Carlos Cara" class="imagen-fondo">
 
-    <!-- Enlaces con las áreas clicables, solo visibles en la versión web -->
+    <!-- Enlaces con las áreas clicables, solo visibles en la versión móvil -->
     <div class="area-click fotografia" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html', '_blank')">
       <img src="foto-ilustracion.png" alt="Ilustración Fotografía" class="ilustracion">
     </div>
