@@ -5,45 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Carlos Cara</title>
   <style>
-    html, body {
+    body, html {
       margin: 0;
       padding: 0;
       width: 100%;
-      height: 100%;
       font-family: Arial, sans-serif;
       background-color: #000;
-      overflow: hidden;
       cursor: none;
+      height: 100%; /* Asegura que ocupe toda la pantalla */
     }
 
     .contenedor-imagen {
-      position: relative;
       width: 100%;
-      height: 100vh;
+      height: 100%; /* Ocupa toda la altura de la pantalla */
+      position: relative;
     }
 
     .imagen-fondo {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: none;
-    }
-
-    .imagen-fondo.desktop-only {
+      height: 100%; /* Aseguramos que cubra toda la pantalla */
+      object-fit: cover; /* Mantiene la proporción de la imagen */
       display: block;
     }
 
+    /* Diseño de las áreas de clic para el escritorio */
     .area-click {
       position: absolute;
       z-index: 10;
       background: transparent;
       transition: all 0.4s ease-in-out;
-      animation: pulsar 2s infinite ease-in-out;
-      cursor: none;
+      cursor: pointer;
     }
 
     .area-click:hover {
@@ -58,43 +49,23 @@
       100% { transform: scale(1); }
     }
 
-    .fotografia {
-      top: 10%;
-      left: 10%;
-      width: 30%;
-      height: 25%;
-      overflow: visible;
-    }
-
-    .ilustracion-foto {
+    /* Estilo para los elementos dentro del área de clic */
+    .fotografia,
+    .nombre,
+    .cine,
+    .diseno {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 130%;
-      height: 130%;
-      object-fit: cover;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    }
-
-    .area-click.fotografia:hover .ilustracion-foto {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-
-    .nombre {
-      top: 40%;
-      left: 35%;
       width: 30%;
       height: 25%;
       z-index: 50;
       cursor: none;
-      position: absolute;
-      overflow: visible;
     }
 
-    .ilustracion-logo {
+    /* Logo y otros elementos */
+    .ilustracion-logo,
+    .ilustracion-foto,
+    .ilustracion-cine,
+    .ilustracion-diseno {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -106,61 +77,15 @@
       transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     }
 
-    .area-click.nombre:hover .ilustracion-logo {
+    .area-click:hover .ilustracion-logo,
+    .area-click:hover .ilustracion-foto,
+    .area-click:hover .ilustracion-cine,
+    .area-click:hover .ilustracion-diseno {
       opacity: 1;
       transform: translate(-50%, -50%) scale(1.2);
     }
 
-    .cine {
-      top: 10%;
-      right: 10%;
-      width: 35%;
-      height: 35%;
-      overflow: visible;
-    }
-
-    .ilustracion-cine {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 130%;
-      height: 130%;
-      object-fit: cover;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    }
-
-    .area-click.cine:hover .ilustracion-cine {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-
-    .diseno {
-      bottom: 10%;
-      right: 5%;
-      width: 30%;
-      height: 25%;
-      overflow: visible;
-    }
-
-    .ilustracion-diseno {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 130%;
-      height: 130%;
-      object-fit: cover;
-      transform: translate(-50%, -50%);
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
-    }
-
-    .area-click.diseno:hover .ilustracion-diseno {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1.2);
-    }
-
+    /* Lineas superior e inferior */
     .linea-superior, .linea-inferior {
       position: fixed;
       left: 0;
@@ -186,103 +111,126 @@
       100% { transform: translateX(0); }
     }
 
-    .cursor {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: radial-gradient(circle, rgba(0, 102, 255, 1) 30%, rgba(255, 255, 255, 0) 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      transition: transform 0.1s ease, background 0.2s ease;
-      z-index: 10000;
-    }
-
-    .cursor-hover {
-      transform: scale(1.5);
-      background: radial-gradient(circle, rgba(0, 102, 255, 1) 50%, rgba(255, 255, 255, 0) 80%);
-    }
-
-    /* Versión móvil */
+    /* MOBILE (menor a 768px) */
     @media (max-width: 768px) {
-      .imagen-fondo.desktop-only {
+      .imagen-fondo {
+        width: 100%;
+        height: 100%; /* Ahora ocupa toda la pantalla del móvil */
+        object-fit: cover;
+      }
+
+      .contenedor-imagen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden; /* Evita que se salga el contenido de la pantalla */
+      }
+
+      .area-click {
+        width: 80%;
+        height: auto;
+        margin: 20px 0;
+        position: relative;
+      }
+
+      .fotografia,
+      .cine,
+      .diseno,
+      .nombre {
+        width: 80vw;
+        height: 25vh;
+        margin: 10px auto;
+        position: relative;
+      }
+
+      .ilustracion-foto,
+      .ilustracion-cine,
+      .ilustracion-diseno,
+      .ilustracion-logo {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      /* Cursor personalizado en móvil */
+      .cursor {
+        display: none; /* Ocultamos el cursor personalizado en móviles */
+      }
+
+      /* Ocultar las líneas decorativas en móvil */
+      .linea-superior,
+      .linea-inferior {
         display: none;
       }
 
-      .imagen-fondo.mobile-only {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-        object-fit: cover;
-        object-position: center;
-        z-index: 0;
-      }
-
-      .cursor,
-      .linea-superior,
-      .linea-inferior,
-      .area-click {
-        display: none !important;
-      }
-
-      body, html {
-        overflow: hidden;
-        height: 100%;
+      /* Eliminar imagenes de enlaces en móvil */
+      .ilustracion-foto,
+      .ilustracion-cine,
+      .ilustracion-diseno,
+      .ilustracion-logo {
+        display: none;
       }
     }
+
   </style>
 </head>
 <body>
   <div class="contenedor-imagen">
-    <img src="web-carlos.png" alt="Fondo Escritorio" class="imagen-fondo desktop-only">
-    <img src="homevertical.png" alt="Fondo Móvil" class="imagen-fondo mobile-only">
+    <img src="homevertical.png" alt="Carlos Cara" class="imagen-fondo">
 
-    <!-- FOTOGRAFÍA -->
-    <div class="area-click fotografia" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html', '_blank')">
-      <img src="foto-ilustracion.png" alt="Ilustración Fotografía" class="ilustracion-foto">
+    <!-- Enlace fotografía -->
+    <div class="area-click fotografia">
+      <a href="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html" target="_blank">
+        <img src="foto-ilustracion.png" alt="Ilustración Fotografía" class="ilustracion-foto">
+      </a>
     </div>
 
-    <!-- NOMBRE / ENLACE -->
-    <div class="area-click nombre" onclick="window.location.href='carloscara.html'">
-      <img src="logocarlos.png" alt="Logo Carlos Cara" class="ilustracion-logo">
+    <!-- Enlace nombre / Carlos Cara -->
+    <div class="area-click nombre">
+      <a href="carloscara.html">
+        <img src="logocarlos.png" alt="Logo Carlos Cara" class="ilustracion-logo">
+      </a>
     </div>
 
-    <!-- CINE -->
-    <div class="area-click cine" onclick="window.open('cine.html', '_blank')">
-      <img src="cine-ilustracion.png" alt="Ilustración Cine" class="ilustracion-cine">
+    <!-- Enlace cine -->
+    <div class="area-click cine">
+      <a href="cine.html" target="_blank">
+        <img src="cine-ilustracion.png" alt="Ilustración Cine" class="ilustracion-cine">
+      </a>
     </div>
 
-    <!-- DISEÑO -->
-    <div class="area-click diseno" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html', '_blank')">
-      <img src="diseno-ilustracion.png" alt="Ilustración Diseño" class="ilustracion-diseno">
+    <!-- Enlace diseño -->
+    <div class="area-click diseno">
+      <a href="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html" target="_blank">
+        <img src="diseno-ilustracion.png" alt="Ilustración Diseño Gráfico" class="ilustracion-diseno">
+      </a>
     </div>
 
-    <!-- DECORACIÓN -->
+    <!-- Líneas superiores e inferiores -->
     <div class="linea-superior"></div>
     <div class="linea-inferior"></div>
 
-    <!-- CURSOR -->
+    <!-- Cursor -->
     <div class="cursor" id="cursor"></div>
+
+    <script>
+      const cursor = document.getElementById('cursor');
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.pageX - cursor.offsetWidth / 2 + 'px';
+        cursor.style.top = e.pageY - cursor.offsetHeight / 2 + 'px';
+      });
+
+      const areas = document.querySelectorAll('.area-click');
+      areas.forEach(area => {
+        area.addEventListener('mouseenter', () => {
+          cursor.classList.add('cursor-hover');
+        });
+        area.addEventListener('mouseleave', () => {
+          cursor.classList.remove('cursor-hover');
+        });
+      });
+    </script>
   </div>
-
-  <script>
-    const cursor = document.getElementById('cursor');
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.pageX - cursor.offsetWidth / 2 + 'px';
-      cursor.style.top = e.pageY - cursor.offsetHeight / 2 + 'px';
-    });
-
-    const areas = document.querySelectorAll('.area-click');
-    areas.forEach(area => {
-      area.addEventListener('mouseenter', () => {
-        cursor.classList.add('cursor-hover');
-      });
-      area.addEventListener('mouseleave', () => {
-        cursor.classList.remove('cursor-hover');
-      });
-    });
-  </script>
 </body>
 </html>
