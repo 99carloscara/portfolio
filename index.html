@@ -14,10 +14,11 @@
       cursor: none;
     }
 
-    /* Estilo contenedor */
+    /* Contenedor principal */
     .contenedor-imagen {
       width: 100%;
       position: relative;
+      height: 100vh; /* Ocupa toda la altura de la pantalla */
     }
 
     /* Imagen de fondo para web */
@@ -27,20 +28,21 @@
       display: block;
     }
 
-    /* Móvil: Imagen de fondo para móviles */
+    /* Móvil: Imagen de fondo para dispositivos móviles */
     @media (max-width: 768px) {
       .imagen-fondo {
-        display: none; /* Ocultamos la imagen de fondo de web */
+        display: none; /* Ocultamos la imagen de fondo para web */
       }
       .contenedor-imagen {
         background-image: url('homevertical.png');
-        background-size: cover;
-        background-position: center;
-        height: 100vh;
+        background-size: cover; /* Asegura que la imagen cubra toda la pantalla */
+        background-position: center; /* Centra la imagen */
+        background-repeat: no-repeat; /* Evita que la imagen se repita */
+        height: 100vh; /* Hace que la imagen ocupe toda la altura de la pantalla */
       }
     }
 
-    /* Estilo para el cursor */
+    /* Estilo del cursor */
     .cursor {
       position: absolute;
       width: 20px;
@@ -57,7 +59,7 @@
       background: radial-gradient(circle, rgba(0, 102, 255, 1) 50%, rgba(255, 255, 255, 0) 80%);
     }
 
-    /* Áreas de clic (botones de enlace) */
+    /* Áreas de clic */
     .area-click {
       position: absolute;
       z-index: 10;
