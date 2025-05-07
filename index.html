@@ -186,7 +186,7 @@
       <img src="logocarlos.png" alt="Carlos Cara" class="ilustracion-logo">
     </div>
 
-    <div class="area-click cine" onclick="window.open('cine.html', '_blank')">
+    <div class="area-click cine" onclick="window.location.href='cine.html'">
       <img src="cine-ilustracion.png" alt="Cine" class="ilustracion-cine">
     </div>
 
@@ -202,53 +202,44 @@
 
 <!-- VISTA MÓVIL -->
 <div class="movil">
-  <a class="enlace diseno"
-     href="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html"
-     target="_blank"
-     title="Portafolio de Diseño Gráfico"
-     aria-label="Portafolio de Diseño Gráfico">
-  </a>
-
-  <a class="enlace cine"
-     href="cine.html"
-     title="Sección Cine"
-     aria-label="Sección Cine">
-  </a>
-
-  <a class="enlace nombre"
-     href="carloscara.html"
-     title="Carlos Cara"
-     aria-label="Carlos Cara">
-  </a>
-
-  <a class="enlace fotografia"
-     href="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html"
-     target="_blank"
-     title="Portafolio de Fotografía"
-     aria-label="Portafolio de Fotografía">
-  </a>
+  <div class="enlace diseno" data-url="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html"></div>
+  <div class="enlace cine" data-url="cine.html"></div>
+  <div class="enlace nombre" data-url="carloscara.html"></div>
+  <div class="enlace fotografia" data-url="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html"></div>
 </div>
 
 <script>
+  // Función para vibrar
+  function vibrar(ms = 50) {
+    if ('vibrate' in navigator) {
+      navigator.vibrate(ms);
+    }
+  }
+
+  // Redirigir en móvil al tocar (como hover)
+  document.querySelectorAll('.movil .enlace').forEach(el => {
+    el.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      vibrar();
+      const url = el.dataset.url;
+      if (url) {
+        window.location.href = url;
+      }
+    });
+  });
+
+  // Cursor efecto solo en escritorio
   const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', (e) => {
-    if (cursor) {
+  if (cursor) {
+    document.addEventListener('mousemove', (e) => {
       cursor.style.left = e.pageX - cursor.offsetWidth / 2 + 'px';
       cursor.style.top = e.pageY - cursor.offsetHeight / 2 + 'px';
-    }
-  });
+    });
 
-  const areas = document.querySelectorAll('.area-click');
-  areas.forEach(area => {
-    area.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
-    area.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
-  });
+    const areas = document.querySelectorAll('.area-click');
+    areas.forEach(area => {
+      area.addEventListener('mouseenter', () => cursor.classList.add('cursor-hover'));
+      area.addEventListener('mouseleave', () => cursor.classList.remove('cursor-hover'));
+    });
+  }
 </script>
-
-</body>
-</html>
-
-
-
-
-
