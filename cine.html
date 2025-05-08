@@ -35,9 +35,8 @@
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
             transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease;
             padding: 0.3em;
-            font-size: 11px !important; /* Ajustar tamaño para que quepa */
-            white-space: normal !important; /* Permitir varias líneas */
-            width: 40% !important; /* Ancho para los de los lados */
+            font-size: 11px;
+            white-space: normal;
         }
 
         .link:hover {
@@ -47,10 +46,10 @@
 
         /* Versión escritorio */
         .amor        { top: 5%; left: 5%; font-size: 1.4vw; }
-        .puerta       { top: 5%; right: 5%; font-size: 1.4vw; }
+        .puerta      { top: 5%; right: 5%; font-size: 1.4vw; }
         .apariencia  { top: 45%; left: 50%; transform: translateX(-50%); font-size: 1.4vw; }
-        .no-salgo   { bottom: 5%; left: 5%; font-size: 1.4vw; }
-        .billete    { bottom: 5%; right: 5%; font-size: 1.4vw; }
+        .no-salgo    { bottom: 5%; left: 5%; font-size: 1.4vw; }
+        .billete     { bottom: 5%; right: 5%; font-size: 1.4vw; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -68,50 +67,56 @@
             transition: all 0.1s ease;
         }
 
-        /* VERSIÓN MÓVIL - DISTRIBUCIÓN EN HUECOS */
+        /* VERSIÓN MÓVIL SIMPLIFICADA */
         @media (max-width: 768px) {
             .background {
                 content: url("cinevertical.png");
             }
 
             .link {
-                transform: none !important; /* Eliminar transformaciones previas */
-                text-align: center !important;
+                font-size: 11px;
+                width: auto;
             }
 
+            /* Arriba izquierda */
             .amor {
-                top: 15% !important;
-                left: 10% !important;
+                top: 15%;
+                left: 10%;
             }
 
+            /* Arriba derecha */
             .puerta {
-                top: 15% !important;
-                right: 10% !important;
+                top: 15%;
+                right: 10%;
             }
 
+            /* Centro */
             .billete {
-                top: 45% !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                width: 60% !important; /* Ajustar ancho para el centro */
+                top: 45%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 60%;
             }
 
-            .apariencia {
-                bottom: 30% !important; /* Aumentamos considerablemente el bottom */
-                right: 10% !important;
-            }
-
+            /* Abajo izquierda */
             .no-salgo {
-                bottom: 10% !important;
-                right: 10% !important;
+                bottom: 10%;
+                left: 10%;
+            }
+
+            /* Abajo derecha - Ajustado al lado de "no salgo más" */
+            .apariencia {
+                top: 86%;  /* Usamos 'top' para posicionar a la misma altura */
+                left: 75%; /* Desplazado a la derecha de 'no salgo más' */
+                transform: translateX(-50%); /* Para alinear correctamente */
             }
 
             .cursor {
-                display: none !important;
+                display: none;
             }
 
             body {
-                cursor: default !important;
+                cursor: default;
             }
         }
     </style>
@@ -141,3 +146,5 @@
     </script>
 </body>
 </html>
+
+
