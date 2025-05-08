@@ -5,27 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Amor-tizar mi tiempo</title>
   <style>
-  
     body {
       margin: 0;
       padding: 0;
       background: 
-        /* Línea azul superior */
         linear-gradient(to bottom, #0066ff 2px, transparent 2px) top / 100% 10px,
-        /* Línea azul inferior */
         linear-gradient(to top, #0066ff 2px, transparent 2px) bottom / 100% 10px,
-        /* Imagen de fondo */
-        url('amortizarvertical.png') no-repeat center center;
+        url('amor-tizar mi tiempo.png') no-repeat center center;
       background-size: cover;
       min-height: 100vh;
       position: relative;
       overflow-x: hidden;
     }
 
-    /* Líneas decorativas (azul intenso) */
-    .linea-superior {
+    .linea-superior, .linea-inferior {
       position: fixed;
-      top: 0;
       left: 0;
       width: 100%;
       height: 4px;
@@ -34,25 +28,15 @@
       z-index: 5;
     }
 
-    .linea-inferior {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: #0066ff;
-      box-shadow: 0 -2px 8px rgba(0, 102, 255, 0.8);
-      z-index: 5;
-    }
+    .linea-superior { top: 0; }
+    .linea-inferior { bottom: 0; }
 
-    /* Video separado */
     .video-container {
       width: 22%;
       aspect-ratio: 1;
       position: fixed;
-      bottom: 30px; /* Lo movemos hacia el fondo */
-      left: 50%;
-      transform: translateX(-50%); /* Lo centramos en la pantalla */
+      bottom: 100px;
+      right: calc(30px + 200px);
       border: 2px solid rgba(0, 102, 255, 0.5);
       border-radius: 4px;
       box-shadow: 0 0 12px rgba(0,102,255,0.7);
@@ -65,16 +49,16 @@
       border: none;
     }
 
-    /* Expansión del fondo */
     .background-expander {
       min-height: 100vh;
       min-width: 100vw;
-      margin-top: 80px; /* Espaciado para separar el contenido */
     }
 
-    /* Estilos específicos para móviles */
+    .video-movil {
+      display: none; /* Oculto por defecto */
+    }
+
     @media screen and (max-width: 768px) {
-      /* Se mantiene la imagen de fondo */
       body {
         background-image: url('amortizarvertical.png');
         background-size: cover;
@@ -84,57 +68,68 @@
         height: 3px;
       }
 
-      /* Video más pequeño en dispositivos móviles */
       .video-container {
-        width: 60%; /* Reducimos el tamaño del video */
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
+        display: none; /* Ocultamos el flotante en móviles */
+      }
+
+      .video-movil {
+        display: block;
+        width: 90%;
+        margin: 40px auto 80px auto;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        overflow: hidden;
         z-index: 10;
       }
 
-      /* Aseguramos que el fondo se expanda correctamente */
+      .video-movil iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: none;
+      }
+
       .background-expander {
-        height: 150vh;
-        margin-top: 60px; /* Ajuste adicional de márgenes */
+        height: 120vh; /* Deja espacio para mostrar el video más abajo */
       }
     }
 
-    /* Resolución aún más pequeña (iPhone 13 y similares) */
     @media screen and (max-width: 430px) {
-      .video-container {
-        width: 80%; /* Aún más pequeño */
-        bottom: 20px; /* Colocamos más cerca del fondo */
-      }
-
       .linea-superior, .linea-inferior {
         height: 2px;
       }
-
-      /* Asegurar que el video no interfiera con el texto */
-      .video-container {
-        z-index: 5;
-      }
     }
-
   </style>
 </head>
 <body>
 
-  <!-- Líneas azules decorativas -->
   <div class="linea-superior"></div>
   <div class="linea-inferior"></div>
 
-  <!-- Video -->
+  <!-- Solo para pantallas grandes -->
   <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/Av31VrT7YVs" 
-            frameborder="0" 
-            allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/Av31VrT7YVs" frameborder="0" allowfullscreen></iframe>
   </div>
 
-  <!-- Fuerza scroll para asegurar espacio -->
   <div class="background-expander"></div>
+
+  <!-- Solo para móviles, aparece después del fondo -->
+  <div class="video-movil">
+    <iframe src="https://www.youtube.com/embed/Av31VrT7YVs" frameborder="0" allowfullscreen></iframe>
+  </div>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

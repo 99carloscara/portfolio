@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>La apariencia por el culo</title>
   <style>
+    /* Estilos generales */
     body {
       margin: 0;
       padding: 0;
@@ -59,6 +60,7 @@
       }
     }
 
+    /* Video fijo para la versión web */
     .video-container {
       width: 22%;
       aspect-ratio: 1;
@@ -87,18 +89,65 @@
       transform: translate(-50%, -50%);
       transition: all 0.1s ease;
     }
+
+    /* Estilos móviles */
+    @media screen and (max-width: 768px) {
+      body {
+        background-image: url('laaparienciavertical.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-attachment: scroll;
+        background-position: center center;
+        cursor: auto;
+        background-color: transparent;
+      }
+
+      .linea-superior,
+      .linea-inferior {
+        display: none;
+      }
+
+      .video-container {
+        display: none;
+      }
+
+      /* Video móvil */
+      .video-movil {
+        width: 90%;
+        margin: 0 auto;
+        position: absolute;
+        bottom: 0; /* Se coloca abajo del todo */
+        left: 50%;
+        transform: translateX(-50%); /* Centrado horizontal */
+        padding-top: 10px;
+      }
+
+      .video-movil iframe {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border: none;
+        border-radius: 8px;
+        box-shadow: 0 0 12px rgba(0,102,255,0.5);
+      }
+
+      .cursor {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Líneas decorativas -->
+  <!-- Líneas decorativas (versión web) -->
   <div class="linea-superior"></div>
   <div class="linea-inferior"></div>
 
-  <!-- Video fijo -->
+  <!-- Video fijo (versión web) -->
   <div class="video-container">
     <iframe src="https://www.youtube.com/embed/bIXfdo3quAk" frameborder="0" allowfullscreen></iframe>
   </div>
+
+
 
   <!-- Cursor personalizado -->
   <div class="cursor"></div>
