@@ -45,11 +45,12 @@
       z-index: 5;
     }
 
+    /* Video separado */
     .video-container {
-      width: 15%;
+      width: 22%;
       aspect-ratio: 1;
       position: fixed;
-      bottom: 20px; /* Lo movemos hacia el fondo */
+      bottom: 30px; /* Lo movemos hacia el fondo */
       left: 50%;
       transform: translateX(-50%); /* Lo centramos en la pantalla */
       border: 2px solid rgba(0, 102, 255, 0.5);
@@ -64,13 +65,16 @@
       border: none;
     }
 
+    /* Expansión del fondo */
     .background-expander {
       min-height: 100vh;
       min-width: 100vw;
+      margin-top: 80px; /* Espaciado para separar el contenido */
     }
 
-    /* Adaptación para móviles */
+    /* Estilos específicos para móviles */
     @media screen and (max-width: 768px) {
+      /* Se mantiene la imagen de fondo */
       body {
         background-image: url('amortizarvertical.png');
         background-size: cover;
@@ -80,20 +84,40 @@
         height: 3px;
       }
 
-      /* Video más pequeño y abajo */
+      /* Video más pequeño en dispositivos móviles */
       .video-container {
         width: 60%; /* Reducimos el tamaño del video */
         position: absolute;
-        bottom: 30px;
+        bottom: 20px;
         left: 50%;
-        transform: translateX(-50%); /* Centrado */
+        transform: translateX(-50%);
         z-index: 10;
       }
 
+      /* Aseguramos que el fondo se expanda correctamente */
       .background-expander {
-        height: 120vh; /* Aseguramos que el fondo expanda */
+        height: 150vh;
+        margin-top: 60px; /* Ajuste adicional de márgenes */
       }
     }
+
+    /* Resolución aún más pequeña (iPhone 13 y similares) */
+    @media screen and (max-width: 430px) {
+      .video-container {
+        width: 80%; /* Aún más pequeño */
+        bottom: 20px; /* Colocamos más cerca del fondo */
+      }
+
+      .linea-superior, .linea-inferior {
+        height: 2px;
+      }
+
+      /* Asegurar que el video no interfiera con el texto */
+      .video-container {
+        z-index: 5;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -109,7 +133,7 @@
             allowfullscreen></iframe>
   </div>
 
-  <!-- Fuerza scroll -->
+  <!-- Fuerza scroll para asegurar espacio -->
   <div class="background-expander"></div>
 
 </body>
