@@ -43,6 +43,7 @@
       text-shadow: 0 0 12px rgba(0,102,255,0.9);
     }
 
+    /* Versión escritorio */
     .amor       { top: 15%; left: 13%; }
     .puerta     { top: 15%; right: 13%; }
     .apariencia { bottom: 10%; left: 13%; }
@@ -65,17 +66,23 @@
       transition: all 0.1s ease;
     }
 
+    /* 📱 Versión móvil con ubicaciones exactas */
     @media (max-width: 768px) {
+      .background {
+        content: url("cinevertical.png");
+      }
+
       .link {
         font-size: 5vw;
         padding: 0.8em;
+        transform: none !important;
       }
 
-      .amor       { top: 10%; left: 10%; }
-      .puerta     { top: 22%; left: 10%; }
-      .apariencia { top: 34%; left: 10%; }
-      .no-salgo   { top: 46%; left: 10%; }
-      .billete    { top: 58%; left: 10%; transform: none; }
+      .amor       { top: 18%; left: 8%; }
+      .puerta     { top: 29.5%; left: 12%; }
+      .apariencia { top: 42.5%; left: 10%; }
+      .no-salgo   { top: 55%; left: 9%; }
+      .billete    { top: 70%; left: 14%; }
 
       .cursor {
         display: none;
@@ -112,3 +119,4 @@
   </script>
 </body>
 </html>
+
