@@ -3,17 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mapa de Enlaces de Cine (Móvil)</title>
+  <title>Mapa de Enlaces de Cine</title>
   <style>
     body {
       margin: 0;
       font-family: 'Helvetica', sans-serif;
       background-color: #000;
+      overflow-x: hidden;
+      cursor: none;
     }
 
     .container {
       position: relative;
       width: 100%;
+      animation: fadeIn 1s ease-out both;
     }
 
     .background {
@@ -24,50 +27,76 @@
 
     .link {
       position: absolute;
-      color: #0000FF;
-      font-size: 4.2vw;
+      color: #0066ff;
+      font-size: 1.4vw;
       text-align: center;
       text-decoration: none;
-      font-weight: bold;
-      text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.6);
-      width: 40%;
+      font-weight: 600;
       line-height: 1.4;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+      transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease;
+      padding: 0.5em;
     }
 
-    /* Posicionamiento en huecos blancos */
-    .amor {
-      top: 10%;
-      left: 5%;
+    .link:hover {
+      transform: scale(1.1);
+      text-shadow: 0 0 12px rgba(0,102,255,0.9);
     }
 
-    .puerta {
-      top: 10%;
-      right: 5%;
+    /* Versión escritorio */
+    .amor       { top: 5%; left: 5%; }
+    .puerta     { top: 5%; right: 5%; }
+    .apariencia { top: 45%; left: 50%; transform: translateX(-50%); }
+    .no-salgo   { bottom: 5%; left: 5%; }
+    .billete    { bottom: 5%; right: 5%; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    .apariencia {
-      top: 40%;
-      left: 30%;
+    .cursor {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: radial-gradient(circle, rgba(0, 204, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: all 0.1s ease;
     }
 
-    .no-salgo {
-      bottom: 12%;
-      left: 5%;
-    }
+    /* 📱 Versión móvil con ubicaciones exactas */
+    @media (max-width: 768px) {
+      .background {
+        content: url("cinevertical.png");
+      }
 
-    .billete {
-      bottom: 12%;
-      right: 5%;
-    }
+      .link {
+        font-size: 5vw;
+        padding: 0.8em;
+        transform: none !important;
+      }
 
-    @media (min-width: 769px) {
-      .container { display: none; }
+      .amor       { top: 18%; left: 8%; }
+      .puerta     { top: 29.5%; left: 12%; }
+      .apariencia { top: 42.5%; left: 10%; }
+      .no-salgo   { top: 55%; left: 9%; }
+      .billete    { top: 70%; left: 14%; }
+
+      .cursor {
+        display: none;
+      }
+
+      body {
+        cursor: default;
+      }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <img src="cinevertical.png" alt="Fondo móvil" class="background" />
+    <img src="cine.png" alt="Fondo" class="background" />
 
     <a href="amor-tizar.html" class="link amor">amor-tizar mi tiempo<br>(cortometraje 17:54)</a>
     <a href="lapuerta.html" class="link puerta">la puerta<br>(cortometraje 02:27)</a>
@@ -75,6 +104,21 @@
     <a href="nosalgomas.html" class="link no-salgo">no salgo más<br>(webserie 04:09)</a>
     <a href="billete.html" class="link billete">billete de ida<br>(videoclip 03:07)</a>
   </div>
+
+  <div class="cursor"></div>
+
+  <script>
+    const cursor = document.querySelector('.cursor');
+
+    document.addEventListener('mousemove', (e) => {
+      if (window.innerWidth > 768) {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+      }
+    });
+  </script>
 </body>
 </html>
+
+
 
