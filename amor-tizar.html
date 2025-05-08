@@ -15,7 +15,7 @@
         /* Línea azul inferior */
         linear-gradient(to top, #0066ff 2px, transparent 2px) bottom / 100% 10px,
         /* Imagen de fondo */
-        url('amor-tizar mi tiempo.png') no-repeat center center;
+        url('amortizarvertical.png') no-repeat center center;
       background-size: cover;
       min-height: 100vh;
       position: relative;
@@ -46,11 +46,12 @@
     }
 
     .video-container {
-      width: 22%;
+      width: 15%;
       aspect-ratio: 1;
       position: fixed;
-      bottom: 100px;
-      right: calc(30px + 200px);
+      bottom: 20px; /* Lo movemos hacia el fondo */
+      left: 50%;
+      transform: translateX(-50%); /* Lo centramos en la pantalla */
       border: 2px solid rgba(0, 102, 255, 0.5);
       border-radius: 4px;
       box-shadow: 0 0 12px rgba(0,102,255,0.7);
@@ -66,6 +67,32 @@
     .background-expander {
       min-height: 100vh;
       min-width: 100vw;
+    }
+
+    /* Adaptación para móviles */
+    @media screen and (max-width: 768px) {
+      body {
+        background-image: url('amortizarvertical.png');
+        background-size: cover;
+      }
+
+      .linea-superior, .linea-inferior {
+        height: 3px;
+      }
+
+      /* Video más pequeño y abajo */
+      .video-container {
+        width: 60%; /* Reducimos el tamaño del video */
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%); /* Centrado */
+        z-index: 10;
+      }
+
+      .background-expander {
+        height: 120vh; /* Aseguramos que el fondo expanda */
+      }
     }
   </style>
 </head>
@@ -87,11 +114,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
