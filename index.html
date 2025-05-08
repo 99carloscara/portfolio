@@ -2,12 +2,121 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Carlos Cara</title>
   <style>
-    /* [Todo el CSS anterior se mantiene igual hasta la parte móvil] */
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      cursor: none;
+    }
 
-    /* Versión móvil - REORGANIZADA */
+    .web { display: block; }
+    .movil { display: none; }
+
+    .contenedor-imagen {
+      width: 100%;
+      position: relative;
+    }
+    .imagen-fondo {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .cursor {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle, rgba(0, 102, 255, 1) 30%, rgba(255, 255, 255, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      transition: transform 0.1s ease, background 0.2s ease;
+      z-index: 10000;
+    }
+
+    .cursor-hover {
+      transform: scale(1.5);
+      background: radial-gradient(circle, rgba(0, 102, 255, 1) 50%, rgba(255, 255, 255, 0) 80%);
+    }
+
+    .area-click {
+      position: absolute;
+      z-index: 10;
+      background: transparent;
+      transition: all 0.4s ease-in-out;
+      animation: pulsar 2s infinite ease-in-out;
+      cursor: none;
+    }
+
+    .area-click:hover {
+      background: linear-gradient(45deg, rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3));
+      transform: scale(1.15) rotate(5deg) translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes pulsar {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    /* POSICIONES WEB ORIGINALES */
+    .fotografia { top: 10%; left: 10%; width: 30%; height: 25%; }
+    .nombre { top: 40%; left: 35%; width: 30%; height: 25%; z-index: 50; }
+    .cine { top: 10%; right: 10%; width: 35%; height: 35%; }
+    .diseno { bottom: 10%; right: 5%; width: 30%; height: 25%; }
+
+    .ilustracion-foto, 
+    .ilustracion-cine, 
+    .ilustracion-diseno, 
+    .ilustracion-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 130%;
+      height: 130%;
+      object-fit: cover;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+    }
+
+    .ilustracion-logo { object-fit: contain; }
+
+    .area-click:hover .ilustracion-foto,
+    .area-click:hover .ilustracion-cine,
+    .area-click:hover .ilustracion-diseno,
+    .area-click:hover .ilustracion-logo {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1.2);
+    }
+
+    .linea-superior, .linea-inferior {
+      position: fixed;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #0066ff, #66aaff, #0066ff);
+      box-shadow: 0 0 10px rgba(0, 102, 255, 0.8);
+      z-index: 5;
+      animation: moverLineas 3s ease-in-out infinite;
+    }
+
+    .linea-superior { top: 0; }
+    .linea-inferior { bottom: 0; }
+
+    @keyframes moverLineas {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(10px); }
+      100% { transform: translateX(0); }
+    }
+
+    /* VERSIÓN MÓVIL (MODIFICADA) */
     @media (max-width: 768px) {
       .web { display: none; }
       .movil {
@@ -71,26 +180,72 @@
 </head>
 <body>
 
-  <!-- VISTA WEB (se mantiene igual) -->
+  <!-- VERSIÓN WEB (ORIGINAL FUNCIONAL) -->
   <div class="web">
-    <!-- [Todo el contenido web anterior se mantiene igual] -->
+    <div class="contenedor-imagen">
+      <img src="web-carlos.png" alt="Carlos Cara" class="imagen-fondo">
+
+      <div class="area-click fotografia" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html', '_blank')">
+        <img src="foto-ilustracion.png" class="ilustracion-foto" alt="">
+      </div>
+
+      <div class="area-click cine" onclick="window.open('cine.html', '_blank')">
+        <img src="cine-ilustracion.png" class="ilustracion-cine" alt="">
+      </div>
+
+      <div class="area-click diseno" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html', '_blank')">
+        <img src="diseno-ilustracion.png" class="ilustracion-diseno" alt="">
+      </div>
+
+      <div class="area-click nombre" onclick="window.location.href='carloscara.html'">
+        <img src="logocarlos.png" class="ilustracion-logo" alt="">
+      </div>
+    </div>
+
+    <div class="linea-superior"></div>
+    <div class="linea-inferior"></div>
+    <div class="cursor" id="cursor"></div>
   </div>
 
-  <!-- VISTA MÓVIL REORGANIZADA -->
+  <!-- VERSIÓN MÓVIL (MODIFICADA) -->
   <div class="movil">
-    <!-- DISEÑO GRÁFICO - Arriba derecha -->
-    <a class="enlace diseno" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html" target="_blank"></a>
-    
-    <!-- CINE - Arriba izquierda -->
-    <a class="enlace cine" href="cine.html"></a>
-    
-    <!-- FOTOGRAFÍA - Abajo izquierda -->
     <a class="enlace fotografia" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html" target="_blank"></a>
-    
-    <!-- CARLOS CARA - Centro -->
+    <a class="enlace diseno" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html" target="_blank"></a>
+    <a class="enlace cine" href="cine.html"></a>
     <a class="enlace nombre" href="carloscara.html"></a>
   </div>
 
-  <!-- [El script se mantiene igual] -->
+  <script>
+    // Cursor personalizado para web
+    const cursor = document.getElementById('cursor');
+    if (cursor) {
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.pageX - cursor.offsetWidth / 2 + 'px';
+        cursor.style.top = e.pageY - cursor.offsetHeight / 2 + 'px';
+      });
+
+      const areas = document.querySelectorAll('.area-click');
+      areas.forEach(area => {
+        area.addEventListener('mouseenter', () => {
+          cursor.classList.add('cursor-hover');
+        });
+        area.addEventListener('mouseleave', () => {
+          cursor.classList.remove('cursor-hover');
+        });
+      });
+    }
+
+    // Efecto táctil para móvil
+    document.addEventListener('DOMContentLoaded', function() {
+      const enlaces = document.querySelectorAll('.movil .enlace');
+      
+      enlaces.forEach(function(enlace) {
+        enlace.addEventListener('touchstart', function() {
+          this.classList.add('active');
+          setTimeout(() => this.classList.remove('active'), 300);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
