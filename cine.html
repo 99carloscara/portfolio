@@ -1,125 +1,143 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mapa de Enlaces de Cine</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Helvetica', sans-serif;
-      background-color: #000;
-      overflow-x: hidden;
-      cursor: none;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Mapa de Enlaces de Cine</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Helvetica', sans-serif;
+            background-color: #000;
+            overflow-x: hidden;
+            cursor: none;
+        }
 
-    .container {
-      position: relative;
-      width: 100%;
-      animation: fadeIn 1s ease-out both;
-    }
+        .container {
+            position: relative;
+            width: 100%;
+            animation: fadeIn 1s ease-out both;
+        }
 
-    .background {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
+        .background {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
 
-    .link {
-      position: absolute;
-      color: #0066ff;
-      font-size: 1.4vw;
-      text-align: center;
-      text-decoration: none;
-      font-weight: 600;
-      line-height: 1.4;
-      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
-      transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease;
-      padding: 0.5em;
-    }
+        .link {
+            position: absolute;
+            color: #0066ff;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            line-height: 1.2;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+            transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease;
+            padding: 0.3em;
+            font-size: 11px !important; /* Ajustar tamaño para que quepa */
+            white-space: normal !important; /* Permitir varias líneas */
+            width: 40% !important; /* Ancho para los de los lados */
+        }
 
-    .link:hover {
-      transform: scale(1.1);
-      text-shadow: 0 0 12px rgba(0,102,255,0.9);
-    }
+        .link:hover {
+            transform: scale(1.1);
+            text-shadow: 0 0 12px rgba(0,102,255,0.9);
+        }
 
-    /* Versión escritorio */
-    .amor       { top: 5%; left: 5%; }
-    .puerta     { top: 5%; right: 5%; }
-    .apariencia { top: 45%; left: 50%; transform: translateX(-50%); }
-    .no-salgo   { bottom: 5%; left: 5%; }
-    .billete    { bottom: 5%; right: 5%; }
+        /* Versión escritorio */
+        .amor        { top: 5%; left: 5%; font-size: 1.4vw; }
+        .puerta       { top: 5%; right: 5%; font-size: 1.4vw; }
+        .apariencia  { top: 45%; left: 50%; transform: translateX(-50%); font-size: 1.4vw; }
+        .no-salgo   { bottom: 5%; left: 5%; font-size: 1.4vw; }
+        .billete    { bottom: 5%; right: 5%; font-size: 1.4vw; }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-    .cursor {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background: radial-gradient(circle, rgba(0, 204, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      transition: all 0.1s ease;
-    }
+        .cursor {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(0, 204, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            transition: all 0.1s ease;
+        }
 
-    /* 📱 Versión móvil con ubicaciones exactas */
-    @media (max-width: 768px) {
-      .background {
-        content: url("cinevertical.png");
-      }
+        /* VERSIÓN MÓVIL - DISTRIBUCIÓN EN HUECOS */
+        @media (max-width: 768px) {
+            .background {
+                content: url("cinevertical.png");
+            }
 
-      .link {
-        font-size: 5vw;
-        padding: 0.8em;
-        transform: none !important;
-      }
+            .link {
+                transform: none !important; /* Eliminar transformaciones previas */
+                text-align: center !important;
+            }
 
-      .amor       { top: 18%; left: 8%; }
-      .puerta     { top: 29.5%; left: 12%; }
-      .apariencia { top: 42.5%; left: 10%; }
-      .no-salgo   { top: 55%; left: 9%; }
-      .billete    { top: 70%; left: 14%; }
+            .amor {
+                top: 15% !important;
+                left: 10% !important;
+            }
 
-      .cursor {
-        display: none;
-      }
+            .puerta {
+                top: 15% !important;
+                right: 10% !important;
+            }
 
-      body {
-        cursor: default;
-      }
-    }
-  </style>
+            .billete {
+                top: 45% !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                width: 60% !important; /* Ajustar ancho para el centro */
+            }
+
+            .apariencia {
+                bottom: 30% !important; /* Aumentamos considerablemente el bottom */
+                right: 10% !important;
+            }
+
+            .no-salgo {
+                bottom: 10% !important;
+                right: 10% !important;
+            }
+
+            .cursor {
+                display: none !important;
+            }
+
+            body {
+                cursor: default !important;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <img src="cine.png" alt="Fondo" class="background" />
+    <div class="container">
+        <img src="cine.png" alt="Fondo" class="background" />
 
-    <a href="billete.html" class="link billete">billete de ida<br>(videoclip 03:07)</a>
-    <a href="amor-tizar.html" class="link amor">amor-tizar mi tiempo<br>(cortometraje 17:54)</a>
-    <a href="lapuerta.html" class="link puerta">la puerta<br>(cortometraje 02:27)</a>
-    <a href="alapariencia.html" class="link apariencia">la apariencia por el culo<br>(cortometraje 08:09)</a>
-    <a href="nosalgomas.html" class="link no-salgo">no salgo más<br>(webserie 04:09)</a>
-  </div>
+        <a href="billete.html" class="link billete">billete de ida<br>(videoclip 03:07)</a>
+        <a href="amor-tizar.html" class="link amor">amor-tizar mi tiempo<br>(cortometraje 17:54)</a>
+        <a href="lapuerta.html" class="link puerta">la puerta<br>(cortometraje 02:27)</a>
+        <a href="alapariencia.html" class="link apariencia">la apariencia por el culo<br>(cortometraje 08:09)</a>
+        <a href="nosalgomas.html" class="link no-salgo">no salgo más<br>(webserie 04:09)</a>
+    </div>
 
-  <div class="cursor"></div>
+    <div class="cursor"></div>
 
-  <script>
-    const cursor = document.querySelector('.cursor');
+    <script>
+        const cursor = document.querySelector('.cursor');
 
-    document.addEventListener('mousemove', (e) => {
-      if (window.innerWidth > 768) {
-        cursor.style.left = `${e.clientX}px`;
-        cursor.style.top = `${e.clientY}px`;
-      }
-    });
-  </script>
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth > 768) {
+                cursor.style.left = `${e.clientX}px`;
+                cursor.style.top = `${e.clientY}px`;
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-
-
