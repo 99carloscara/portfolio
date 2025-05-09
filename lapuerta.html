@@ -78,6 +78,11 @@
       border: none;
     }
 
+    /* Video móvil - oculto por defecto */
+    .video-movil {
+      display: none;
+    }
+
     .background-expander {
       min-height: 120vh;
       min-width: 100vw;
@@ -101,9 +106,9 @@
         background-size: contain;
         background-repeat: no-repeat;
         background-attachment: scroll;
-        background-position: center center;
+        background-position: center 40px; /* Ajustado para dejar espacio arriba */
         cursor: auto;
-        background-color: transparent;
+        padding-bottom: 180px; /* Espacio reservado para el video */
       }
 
       .linea-superior,
@@ -116,18 +121,19 @@
       }
 
       .video-movil {
-        width: 90%;
-        margin: 0 auto;
-        position: absolute;
-        bottom: 0; /* Se coloca abajo del todo */
+        display: block;
+        width: 85%;
+        max-width: 350px;
+        position: fixed;
+        bottom: 40px; /* Posición desde abajo */
         left: 50%;
-        transform: translateX(-50%); /* Centrado horizontal */
-        padding-top: 10px;
+        transform: translateX(-50%);
+        z-index: 10;
       }
 
       .video-movil iframe {
         width: 100%;
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 16/9;
         border: none;
         border-radius: 8px;
         box-shadow: 0 0 12px rgba(0,102,255,0.5);
@@ -139,6 +145,19 @@
 
       .background-expander {
         display: none;
+      }
+    }
+
+    /* Ajustes para móviles más pequeños */
+    @media screen and (max-width: 480px) {
+      body {
+        background-position: center 20px;
+        padding-bottom: 150px;
+      }
+      
+      .video-movil {
+        bottom: 30px;
+        width: 90%;
       }
     }
   </style>
@@ -153,7 +172,10 @@
     <iframe src="https://www.youtube.com/embed/m3PNmVMuSYM" allowfullscreen></iframe>
   </div>
 
- 
+  <!-- Video móvil -->
+  <div class="video-movil">
+    <iframe src="https://www.youtube.com/embed/m3PNmVMuSYM" allowfullscreen></iframe>
+  </div>
 
   <!-- Cursor personalizado -->
   <div class="cursor"></div>
@@ -167,7 +189,6 @@
   </script>
 </body>
 </html>
-
 
 
 

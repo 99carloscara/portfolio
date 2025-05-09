@@ -22,6 +22,7 @@
       width: 100%;
       position: relative;
     }
+
     .imagen-fondo {
       width: 100%;
       height: auto;
@@ -116,7 +117,7 @@
       100% { transform: translateX(0); }
     }
 
-    /* VERSIÓN MÓVIL (MODIFICADA) */
+    /* VERSIÓN MÓVIL */
     @media (max-width: 768px) {
       .web { display: none; }
       .movil {
@@ -128,19 +129,22 @@
         background-size: cover;
       }
 
-      .enlace {
+      .fotografia, .diseno, .cine, .nombre {
         position: absolute;
         display: block;
         z-index: 10;
         background: transparent;
+        cursor: pointer;
       }
 
-      .enlace:active {
+      .fotografia:active,
+      .diseno:active,
+      .cine:active,
+      .nombre:active {
         background: rgba(255, 255, 255, 0.1);
         border-radius: 10px;
       }
 
-      /* FOTOGRAFÍA - Abajo izquierda */
       .fotografia {
         bottom: 5%;
         left: 5%;
@@ -148,7 +152,6 @@
         height: 20%;
       }
 
-      /* DISEÑO GRÁFICO - Arriba derecha */
       .diseno {
         top: 5%;
         right: 5%;
@@ -156,7 +159,6 @@
         height: 20%;
       }
 
-      /* CINE - Arriba izquierda */
       .cine {
         top: 5%;
         left: 5%;
@@ -164,7 +166,6 @@
         height: 20%;
       }
 
-      /* CARLOS CARA - Centro */
       .nombre {
         top: 42%;
         left: 30%;
@@ -180,14 +181,14 @@
 </head>
 <body>
 
-  <!-- VERSIÓN WEB (ORIGINAL FUNCIONAL) -->
+  <!-- VERSIÓN WEB -->
   <div class="web">
     <div class="contenedor-imagen">
       <img src="web-carlos.png" alt="Carlos Cara" class="imagen-fondo">
 
-      <div class="area-click fotografia" onclick="window.open('https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html', '_blank')">
+      <a class="area-click fotografia" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf%C3%ADa/full-view.html" target="_blank">
         <img src="foto-ilustracion.png" class="ilustracion-foto" alt="">
-      </div>
+      </a>
 
       <div class="area-click cine" onclick="window.open('cine.html', '_blank')">
         <img src="cine-ilustracion.png" class="ilustracion-cine" alt="">
@@ -207,16 +208,25 @@
     <div class="cursor" id="cursor"></div>
   </div>
 
-  <!-- VERSIÓN MÓVIL (MODIFICADA) -->
-  <div class="movil">
-    <a class="enlace fotografia" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf-a/full-view.html" target="_blank"></a>
-    <a class="enlace diseno" href="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html" target="_blank"></a>
-    <a class="enlace cine" href="cine.html"></a>
-    <a class="enlace nombre" href="carloscara.html"></a>
-  </div>
+ <!-- VERSIÓN MÓVIL -->
+<div class="movil">
+  <a href="https://www.flipsnack.com/fanzinecatalogue/portfolio-fotograf%C3%ADa/full-view.html" class="fotografia" target="_blank">
+    <span style="display:block; width:100%; height:100%;"></span>
+  </a>
+  <a href="https://www.flipsnack.com/fanzinecatalogue/portfolio-carlos-cara/full-view.html" class="diseno" target="_blank">
+    <span style="display:block; width:100%; height:100%;"></span>
+  </a>
+  <a href="cine.html" class="cine">
+    <span style="display:block; width:100%; height:100%;"></span>
+  </a>
+  <a href="carloscara.html" class="nombre">
+    <span style="display:block; width:100%; height:100%;"></span>
+  </a>
+</div>
+
 
   <script>
-    // Cursor personalizado para web
+    // Cursor personalizado solo en web
     const cursor = document.getElementById('cursor');
     if (cursor) {
       document.addEventListener('mousemove', (e) => {
@@ -234,18 +244,7 @@
         });
       });
     }
-
-    // Efecto táctil para móvil
-    document.addEventListener('DOMContentLoaded', function() {
-      const enlaces = document.querySelectorAll('.movil .enlace');
-      
-      enlaces.forEach(function(enlace) {
-        enlace.addEventListener('touchstart', function() {
-          this.classList.add('active');
-          setTimeout(() => this.classList.remove('active'), 300);
-        });
-      });
-    });
   </script>
+
 </body>
 </html>

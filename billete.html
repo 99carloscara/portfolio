@@ -8,7 +8,7 @@
     body {
       margin: 0;
       padding: 0;
-      background: 
+      background:
         linear-gradient(to bottom, #0066ff 2px, transparent 2px) top / 100% 10px,
         linear-gradient(to top, #0066ff 2px, transparent 2px) bottom / 100% 10px,
         url('billete.png') no-repeat center center fixed;
@@ -42,6 +42,7 @@
       border-radius: 4px;
       box-shadow: 0 0 12px rgba(0,102,255,0.7);
       z-index: 10;
+      background-color: rgba(0, 0, 0, 0.1); /* Ligeramente transparente */
     }
 
     .video-container iframe {
@@ -60,7 +61,7 @@
       overflow: hidden;
       z-index: 10;
       position: absolute;
-      bottom: 120px; /* Subido un poco desde la versión anterior (antes 40px) */
+      bottom: 20px; /* Ajuste final para la posición en móvil */
       left: 0;
       right: 0;
     }
@@ -71,14 +72,14 @@
       border: none;
     }
 
-    @media screen and (max-width: 768px) {
+   @media screen and (max-width: 768px) {
       body {
         background-image: url('billetevertical.png');
         background-size: contain;
         background-repeat: no-repeat;
         background-attachment: scroll;
         background-position: center top;
-        padding-bottom: 100px; /* Reducido para que el vídeo no quede muy abajo */
+        padding-bottom: 100px; /* Reducimos el padding inferior */
       }
 
       .linea-superior, .linea-inferior {
@@ -91,7 +92,7 @@
 
       .video-movil {
         display: block;
-        bottom: 100px; /* Posición más alta que antes (antes 40px) */
+        bottom: 20px;
       }
     }
 
@@ -99,9 +100,9 @@
       .linea-superior, .linea-inferior {
         height: 2px;
       }
-      
+
       .video-movil {
-        bottom: 80px; /* Ajuste fino para móviles pequeños (antes 30px) */
+        bottom: 10px; /* Ajuste fino para móviles pequeños */
       }
     }
   </style>
@@ -111,12 +112,10 @@
   <div class="linea-superior"></div>
   <div class="linea-inferior"></div>
 
-  <!-- Video solo para la versión web -->
   <div class="video-container">
     <iframe src="https://www.youtube.com/embed/VZoidK5cBr8" frameborder="0" allowfullscreen></iframe>
   </div>
 
-  <!-- Video solo para móviles, ahora un poco más arriba -->
   <div class="video-movil">
     <iframe src="https://www.youtube.com/embed/VZoidK5cBr8" frameborder="0" allowfullscreen></iframe>
   </div>

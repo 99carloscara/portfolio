@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>La apariencia por el culo</title>
   <style>
-    /* Estilos generales */
     body {
       margin: 0;
       padding: 0;
@@ -21,14 +20,8 @@
     }
 
     @keyframes fadeInBody {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .linea-superior,
@@ -43,42 +36,38 @@
       z-index: 5;
     }
 
-    .linea-superior {
-      top: 0;
-    }
-
-    .linea-inferior {
-      bottom: 0;
-    }
+    .linea-superior { top: 0; }
+    .linea-inferior { bottom: 0; }
 
     @keyframes glow {
-      0%, 100% {
-        box-shadow: 0 0 10px rgba(0, 102, 255, 0.8);
-      }
-      50% {
-        box-shadow: 0 0 20px rgba(0, 102, 255, 1);
-      }
+      0%, 100% { box-shadow: 0 0 10px rgba(0, 102, 255, 0.8); }
+      50% { box-shadow: 0 0 20px rgba(0, 102, 255, 1); }
     }
 
-    /* Video fijo para la versión web */
-    .video-container {
-      width: 22%;
-      aspect-ratio: 1;
+    /* Video en ESCRITORIO */
+    .video-desktop {
+      width: 25%;
       position: fixed;
-      bottom: 100px;
-      right: calc(30px + 200px);
-      border: 2px solid rgba(0, 102, 255, 0.5);
-      border-radius: 4px;
-      box-shadow: 0 0 12px rgba(0,102,255,0.7);
+      bottom: 20px;
+      right: 120px;
       z-index: 10;
+      display: block;
     }
 
-    .video-container iframe {
+    .video-desktop iframe {
       width: 100%;
-      height: 100%;
+      height: 250px;
       border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0,102,255,0.7);
     }
 
+    /* Video en MÓVIL (oculto en desktop) */
+    .video-movil {
+      display: none;
+    }
+
+    /* Cursor personalizado */
     .cursor {
       position: absolute;
       width: 40px;
@@ -90,64 +79,70 @@
       transition: all 0.1s ease;
     }
 
-    /* Estilos móviles */
-    @media screen and (max-width: 768px) {
-      body {
-        background-image: url('laaparienciavertical.png');
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-attachment: scroll;
-        background-position: center center;
-        cursor: auto;
-        background-color: transparent;
-      }
+    /* Estilos para MÓVIL */
+   @media screen and (max-width: 768px) {
+    body {
+      background-image: url('laaparienciavertical.png');
+      background-size: cover; /* Cambiamos a cover para que la imagen cubra todo */
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      background-position: center top; /* Mantenemos centrado horizontal y pegado arriba */
+      cursor: auto;
+      padding-bottom: 200px; /* Ajustamos el padding inferior para el video */
+    }
 
-      .linea-superior,
-      .linea-inferior {
-        display: none;
-      }
+    .linea-superior,
+    .linea-inferior {
+      display: none;
+    }
 
-      .video-container {
-        display: none;
-      }
+    /* Ocultar video desktop en móvil */
+    .video-desktop {
+      display: none;
+    }
 
-      /* Video móvil */
-      .video-movil {
-        width: 90%;
-        margin: 0 auto;
-        position: absolute;
-        bottom: 0; /* Se coloca abajo del todo */
-        left: 50%;
-        transform: translateX(-50%); /* Centrado horizontal */
-        padding-top: 10px;
-      }
+    /* Video móvil: centrado, más pequeño y sin banda negra */
+    .video-movil {
+      display: block;
+      width: 80%; /* Más estrecho */
+      max-width: 320px; /* Tamaño máximo controlado */
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
 
-      .video-movil iframe {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        border: none;
-        border-radius: 8px;
-        box-shadow: 0 0 12px rgba(0,102,255,0.5);
-      }
+    .video-movil iframe {
+      width: 100%;
+      height: 160px; /* Altura reducida */
+      border: none;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(0, 102, 255, 0.5);
+    }
 
-      .cursor {
-        display: none;
-      }
+    .cursor {
+      display: none;
+    }
+  
     }
   </style>
 </head>
 <body>
 
-  <!-- Líneas decorativas (versión web) -->
+  <!-- Líneas decorativas -->
   <div class="linea-superior"></div>
   <div class="linea-inferior"></div>
 
-  <!-- Video fijo (versión web) -->
-  <div class="video-container">
+  <!-- Video Desktop -->
+  <div class="video-desktop">
     <iframe src="https://www.youtube.com/embed/bIXfdo3quAk" frameborder="0" allowfullscreen></iframe>
   </div>
 
-
+  <!-- Video Móvil -->
+  <div class="video-movil">
+    <iframe src="https://www.youtube.com/embed/bIXfdo3quAk" frameborder="0" allowfullscreen></iframe>
+  </div>
 
   <!-- Cursor personalizado -->
   <div class="cursor"></div>
@@ -162,4 +157,3 @@
 
 </body>
 </html>
-
