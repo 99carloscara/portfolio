@@ -31,15 +31,16 @@
     .linea-superior { top: 0; }
     .linea-inferior { bottom: 0; }
 
+    /* Contenedor del video ajustado dentro de la imagen de fondo */
     .video-container {
-      width: 22%;
-      aspect-ratio: 1;
-      position: fixed;
-      bottom: 100px;
-      right: calc(30px + 200px);
+      width: 20%; /* El video será pequeño */
+      aspect-ratio: 16 / 9;
+      position: absolute; /* Aseguramos que esté dentro del cuerpo */
+      bottom: 10%; /* Ajusta esta posición según donde desees el video */
+      right: 10%;  /* Ajusta esta posición según donde desees el video */
       border: 2px solid rgba(0, 102, 255, 0.5);
       border-radius: 4px;
-      box-shadow: 0 0 12px rgba(0,102,255,0.7);
+      box-shadow: 0 0 12px rgba(0, 102, 255, 0.7);
       z-index: 10;
     }
 
@@ -49,11 +50,13 @@
       border: none;
     }
 
+    /* Expansión del fondo para asegurar que cubra todo */
     .background-expander {
       min-height: 100vh;
       min-width: 100vw;
     }
 
+    /* Video para móvil */
     .video-movil {
       display: none; /* Oculto por defecto */
     }
@@ -69,9 +72,10 @@
       }
 
       .video-container {
-        display: none; /* Ocultamos el flotante en móviles */
+        display: none; /* Ocultamos el video en pantallas pequeñas */
       }
 
+      /* Video móvil */
       .video-movil {
         display: block;
         width: 90%;
@@ -105,31 +109,17 @@
   <div class="linea-superior"></div>
   <div class="linea-inferior"></div>
 
-  <!-- Solo para pantallas grandes -->
+  <!-- Video en tamaño pequeño y ajustado dentro de la imagen de fondo -->
   <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/Av31VrT7YVs" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/eVUI072l0tM" frameborder="0" allowfullscreen></iframe>
   </div>
 
   <div class="background-expander"></div>
 
-  <!-- Solo para móviles, aparece después del fondo -->
+  <!-- Video para móviles -->
   <div class="video-movil">
-    <iframe src="https://www.youtube.com/embed/Av31VrT7YVs" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/eVUI072l0tM" frameborder="0" allowfullscreen></iframe>
   </div>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nosalgomás</title>
   <style>
-    /* Estilos generales */
     body {
       margin: 0;
       padding: 0;
-      background: url('nosalgomas.png') no-repeat center center fixed;
+      background-image: url('nosalgo.png.jpg');
+      background-repeat: no-repeat;
+      background-position: center center;
       background-size: cover;
+      background-attachment: fixed;
       min-height: 100vh;
       overflow-x: hidden;
       animation: fadeInBody 1.5s ease-out both;
@@ -57,37 +59,21 @@
       }
     }
 
-    /* Video fijo para la versión web */
-    .video-container {
-      width: 22%;
-      aspect-ratio: 1;
+    .video-web-container {
+      width: 25%;
       position: fixed;
-      bottom: 100px;
-      right: calc(30px + 200px);
-      border: 2px solid rgba(0, 102, 255, 0.5);
-      border-radius: 4px;
-      box-shadow: 0 0 12px rgba(0,102,255,0.7);
-      z-index: 10;
+      bottom: 10px;
+      right: 120px; /* Más a la izquierda */
+      z-index: 2;
     }
 
-    .video-container iframe {
+    .video-web-container iframe {
       width: 100%;
-      height: 100%;
+      height: 250px;
       border: none;
+      border-radius: 8px;
     }
 
-    .cursor {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      background: radial-gradient(circle, rgba(0, 204, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      transition: all 0.1s ease;
-    }
-
-    /* Estilos móviles */
     @media screen and (max-width: 768px) {
       body {
         background-image: url('nosalgovertical.png');
@@ -104,57 +90,43 @@
         display: none;
       }
 
-      .video-container {
-        display: none;
-      }
-
-      /* Video móvil */
-      .video-movil {
-        width: 90%;
-        margin: 0 auto;
-        position: absolute;
-        bottom: 0; /* Se coloca abajo del todo */
+      .video-web-container {
+        width: 60%;
+        position: fixed;
+        bottom: -10px;
         left: 50%;
-        transform: translateX(-50%); /* Centrado horizontal */
-        padding-top: 10px;
+        transform: translateX(-50%);
+        z-index: 2;
       }
 
-      .video-movil iframe {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        border: none;
-        border-radius: 8px;
-        box-shadow: 0 0 12px rgba(0,102,255,0.5);
-      }
-
-      .cursor {
-        display: none;
+      .video-web-container iframe {
+        height: 180px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Líneas decorativas (versión web) -->
   <div class="linea-superior"></div>
   <div class="linea-inferior"></div>
 
-  <!-- Video fijo (versión web) -->
-  <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/bIXfdo3quAk" frameborder="0" allowfullscreen></iframe>
+  <div class="video-web-container">
+    <iframe src="https://www.youtube.com/embed/eVUI072l0tM"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
   </div>
-
-  <!-- Cursor personalizado -->
-  <div class="cursor"></div>
 
   <script>
     const cursor = document.querySelector('.cursor');
     document.addEventListener('mousemove', (e) => {
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
+      if (cursor) {
+        cursor.style.left = `${e.clientX}px`;
+        cursor.style.top = `${e.clientY}px`;
+      }
     });
   </script>
 
 </body>
 </html>
-

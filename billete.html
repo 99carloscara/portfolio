@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Billete de ida</title>
   <style>
-    /* Estilos generales */
     body {
       margin: 0;
       padding: 0;
@@ -15,52 +14,24 @@
         url('billete.png') no-repeat center center fixed;
       background-size: cover;
       min-height: 100vh;
+      position: relative;
       overflow-x: hidden;
-      animation: fadeInBody 1.5s ease-out both;
-      cursor: none;
     }
 
-    @keyframes fadeInBody {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .linea-superior,
-    .linea-inferior {
+    .linea-superior, .linea-inferior {
       position: fixed;
       left: 0;
       width: 100%;
       height: 4px;
-      background: linear-gradient(90deg, #0066ff, #66aaff, #0066ff);
-      box-shadow: 0 0 10px rgba(0, 102, 255, 0.8);
-      animation: glow 3s ease-in-out infinite;
+      background: #0066ff;
+      box-shadow: 0 2px 8px rgba(0, 102, 255, 0.8);
       z-index: 5;
     }
 
-    .linea-superior {
-      top: 0;
-    }
+    .linea-superior { top: 0; }
+    .linea-inferior { bottom: 0; }
 
-    .linea-inferior {
-      bottom: 0;
-    }
-
-    @keyframes glow {
-      0%, 100% {
-        box-shadow: 0 0 10px rgba(0, 102, 255, 0.8);
-      }
-      50% {
-        box-shadow: 0 0 20px rgba(0, 102, 255, 1);
-      }
-    }
-
-    /* Video fijo para la versión web */
+    /* Video para la versión web */
     .video-container {
       width: 22%;
       aspect-ratio: 1;
@@ -79,87 +50,76 @@
       border: none;
     }
 
-    .cursor {
+    /* Video solo en móvil */
+    .video-movil {
+      display: none;
+      width: 90%;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 10;
       position: absolute;
-      width: 40px;
-      height: 40px;
-      background: radial-gradient(circle, rgba(0, 204, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
-      border-radius: 50%;
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      transition: all 0.1s ease;
+      bottom: 120px; /* Subido un poco desde la versión anterior (antes 40px) */
+      left: 0;
+      right: 0;
     }
 
-    /* Estilos móviles */
+    .video-movil iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: none;
+    }
+
     @media screen and (max-width: 768px) {
       body {
         background-image: url('billetevertical.png');
         background-size: contain;
         background-repeat: no-repeat;
         background-attachment: scroll;
-        background-position: center center;
-        cursor: auto;
-        background-color: transparent;
+        background-position: center top;
+        padding-bottom: 100px; /* Reducido para que el vídeo no quede muy abajo */
       }
 
-      .linea-superior,
-      .linea-inferior {
-        display: none;
+      .linea-superior, .linea-inferior {
+        height: 3px;
       }
 
       .video-container {
         display: none;
       }
 
-      /* Video móvil */
       .video-movil {
-        width: 90%;
-        margin: 0 auto;
-        position: absolute;
-        bottom: 0; /* Se coloca abajo del todo */
-        left: 50%;
-        transform: translateX(-50%); /* Centrado horizontal */
-        padding-top: 10px;
+        display: block;
+        bottom: 100px; /* Posición más alta que antes (antes 40px) */
       }
+    }
 
-      .video-movil iframe {
-        width: 100%;
-        aspect-ratio: 16 / 9;
-        border: none;
-        border-radius: 8px;
-        box-shadow: 0 0 12px rgba(0,102,255,0.5);
+    @media screen and (max-width: 430px) {
+      .linea-superior, .linea-inferior {
+        height: 2px;
       }
-
-      .cursor {
-        display: none;
+      
+      .video-movil {
+        bottom: 80px; /* Ajuste fino para móviles pequeños (antes 30px) */
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Líneas decorativas (versión web) -->
   <div class="linea-superior"></div>
   <div class="linea-inferior"></div>
 
-  <!-- Video fijo (versión web) -->
+  <!-- Video solo para la versión web -->
   <div class="video-container">
-    <iframe src="https://www.youtube.com/embed/bIXfdo3quAk" frameborder="0" allowfullscreen></iframe>
+    <iframe src="https://www.youtube.com/embed/VZoidK5cBr8" frameborder="0" allowfullscreen></iframe>
   </div>
 
-  
-
-  <!-- Cursor personalizado -->
-  <div class="cursor"></div>
-
-  <script>
-    const cursor = document.querySelector('.cursor');
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = `${e.clientX}px`;
-      cursor.style.top = `${e.clientY}px`;
-    });
-  </script>
+  <!-- Video solo para móviles, ahora un poco más arriba -->
+  <div class="video-movil">
+    <iframe src="https://www.youtube.com/embed/VZoidK5cBr8" frameborder="0" allowfullscreen></iframe>
+  </div>
 
 </body>
 </html>
-
