@@ -130,6 +130,55 @@
       transform: translate(-50%, -50%) scale(1.5);
       background: radial-gradient(circle, rgba(0, 102, 255, 1) 50%, rgba(255, 255, 255, 0) 80%);
     }
+
+    /* VERSIÓN MÓVIL */
+    @media (max-width: 768px) {
+      .section1 {
+        background-image: url('carloscara1_mobile.png');
+        background-size: cover;
+        background-position: center;
+      }
+
+      .section2 {
+        background-image: url('carloscara2_mobile.png');
+        background-size: cover;
+        background-position: center;
+      }
+
+      .section2 img {
+        width: 250px;
+        height: 250px;
+      }
+
+      .video-section iframe {
+        width: 100%;
+        height: auto;
+      }
+
+      .contact p, .contact a {
+        font-size: 1.2rem;
+      }
+
+      /* Adaptación de la sección de contacto */
+      .contact {
+        height: auto;
+        padding: 20px;
+      }
+
+      .contact a {
+        font-size: 1rem;
+      }
+
+      .cursor {
+        width: 15px;
+        height: 15px;
+      }
+
+      .cursor-hover {
+        width: 20px;
+        height: 20px;
+      }
+    }
   </style>
 </head>
 <body>

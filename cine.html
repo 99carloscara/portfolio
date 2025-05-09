@@ -35,8 +35,10 @@
             text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
             transition: transform 0.3s ease, text-shadow 0.3s ease, color 0.3s ease;
             padding: 0.3em;
-            font-size: 11px;
+            font-size: 14px;
             white-space: normal;
+            outline: none; /* Elimina cualquier borde o contorno */
+            border: none;  /* Asegura que no haya borde */
         }
 
         .link:hover {
@@ -45,11 +47,11 @@
         }
 
         /* Versión escritorio */
-        .amor        { top: 5%; left: 5%; font-size: 1.4vw; }
-        .puerta      { top: 5%; right: 5%; font-size: 1.4vw; }
-        .apariencia  { top: 45%; left: 50%; transform: translateX(-50%); font-size: 1.4vw; }
-        .no-salgo    { bottom: 5%; left: 5%; font-size: 1.4vw; }
-        .billete     { bottom: 5%; right: 5%; font-size: 1.4vw; }
+        .amor        { top: 5%; left: 5%; font-size: 2vw; }
+        .puerta      { top: 5%; right: 5%; font-size: 2vw; }
+        .apariencia  { top: 45%; left: 50%; transform: translateX(-50%); font-size: 2vw; }
+        .no-salgo    { bottom: 5%; left: 5%; font-size: 2vw; }
+        .billete     { bottom: 5%; right: 5%; font-size: 2vw; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -146,5 +148,3 @@
     </script>
 </body>
 </html>
-
-
